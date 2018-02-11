@@ -1,0 +1,290 @@
+
+--Q1
+--Step 1:Create dimentsion and fact tables.
+
+CREATE TABLE customer_dim (
+    customerid integer primary key,
+    l_name character(20) NOT NULL,
+    f_name character(20),
+    city character(15) NOT NULL,
+    district character(15) NOT NULL,
+    country character(15) NOT NULL,
+    CONSTRAINT customer_customerid CHECK ((customerid > 0))
+);
+
+CREATE Table time_dim(
+	timeid SERIAL primary key,
+	orderdate date not null,
+	dayofweek char(10) not null,
+	month char(10) not null,
+	year int not null
+);
+
+CREATE TABLE book_dim (
+    isbn integer primary key,
+    title character(60) NOT NULL,
+    edition_no smallint DEFAULT 1,
+    price numeric(6,2) NOT NULL,
+    CONSTRAINT book_edition_no CHECK ((edition_no > 0)),
+    CONSTRAINT book_price CHECK ((price > (0)::numeric))
+);
+
+CREATE table sales_fact(
+	customerid int NOT NULL,
+	timeid int NOT NULL,
+    isbn int NOT NULL,
+    amnt numeric(6,2) NOT NULL,
+	FOREIGN KEY (customerid) REFERENCES customer_dim(customerid),
+	FOREIGN KEY (timeid) REFERENCES time_dim(timeid),
+  FOREIGN KEY (isbn) REFERENCES book_dim(isbn),
+  CONSTRAINT amnt CHECK ((amnt > (0)::numeric))
+);
+
+ALTER TABLE ONLY sales_fact
+    ADD CONSTRAINT sales_fact_pkey PRIMARY KEY (customerid, timeid, isbn);
+
+--Step 2.Extract data from existing tables
+insert into customer_dim (customerid, l_name, f_name, city, district, country) (
+  select customerid, l_name, f_name, city, district, country
+  from customer
+);
+
+insert into time_dim (orderdate, dayofweek, month, year) (
+  select distinct orderdate, to_char(orderdate,'Day'),to_char(orderdate,'Month'), to_number(to_char(orderdate,'YYYY'),'9999')
+  from cust_order
+  order by orderdate
+);
+insert into book_dim (isbn, title, edition_no, price) (
+  select isbn, title, edition_no, price
+  from book
+);
+insert into sales_fact (customerid, timeid, isbn, amnt) (
+  select cust_order_book_detail.customerid, time_dim.timeid, cust_order_book_detail.isbn, cust_order_book_detail.quantity * cust_order_book_detail.price as amnt from
+  (select cust_order_detail.customerid, cust_order_detail.orderdate, cust_order_detail.isbn, cust_order_detail.quantity, book_dim.price from 
+    (select cust_order.customerid, cust_order.orderdate, order_detail.isbn, sum(order_detail.quantity) quantity  from cust_order 
+      natural join order_detail 
+      group by cust_order.customerid, cust_order.orderdate, order_detail.isbn) as cust_order_detail 
+  natural join book_dim) as cust_order_book_detail 
+  inner join time_dim on cust_order_book_detail.orderdate = time_dim.orderdate
+);
+
+--Q2
+create materialized view avg_amnt_view as 
+  select customerid, avg(amnt) as avg_amnt from sales_fact 
+  group by customerid;
+
+select avg(avg_amnt) from avg_amnt_view;
+
+select avg(amnt) from sales_fact;
+
+--Q3-a
+SELECT customer_dim.customerid,
+       customer_dim.l_name,
+       customer_dim.f_name
+FROM customer_dim
+NATURAL JOIN
+  (SELECT customerid,
+          sum(amnt) AS sum_amnt,
+          rank() over (ORDER BY sum(amnt) DESC) rank
+   FROM sales_fact
+   GROUP BY customerid) AS tmp_view
+WHERE tmp_view.rank < 6;
+
+--Q3-b
+CREATE OR REPLACE FUNCTION best_perc_of_ord() RETURNS numeric AS $$
+DECLARE
+sum_amnt numeric;
+ord_count int;
+avg_ord_amnt numeric;
+per_of_ord numeric;
+greater_count int;
+no_of_ord int;
+BEGIN
+  --get customer rank by amnt
+  drop view if exists cust_sum_amnt_count_view;
+  create view cust_sum_amnt_count_view as
+  select customerid, sum(amnt) as sum_amnt, rank() over (order by sum(amnt) desc) rank, count(1) from sales_fact
+  group by customerid;
+  --caculate amount of per order, per customer
+  drop view if exists cust_ord_amnt_view;
+  CREATE VIEW cust_ord_amnt_view as
+   SELECT cust_order.customerid,
+          ord_book_amnt.orderid,
+          SUM(ord_book_amnt.amnt) sum_amnt
+   FROM   cust_order
+          NATURAL join (SELECT order_detail.orderid,
+                               order_detail.isbn,
+                               SUM(order_detail.quantity) * book_dim.price AS
+                               amnt
+                        FROM   order_detail
+                               NATURAL join book_dim
+                        GROUP  BY order_detail.orderid,
+                                  order_detail.isbn,
+                                  book_dim.price) AS ord_book_amnt
+   GROUP  BY cust_order.customerid,
+             ord_book_amnt.orderid;
+  sum_amnt = (SELECT sum(amnt) AS sum_amnt FROM sales_fact);
+  ord_count = (SELECT count(1) AS ord_count FROM cust_order);
+  avg_ord_amnt = sum_amnt/ord_count;
+  --debug: raise exception 'avg_ord_amnt: %', avg_ord_amnt; 
+  --caculate count of by the best buyer orders whose amount greater than avg_ord_amnt
+  greater_count = (select count(1)
+  from cust_ord_amnt_view inner join cust_sum_amnt_count_view
+  on cust_ord_amnt_view.customerid = cust_sum_amnt_count_view.customerid
+  where cust_sum_amnt_count_view.rank = 1
+  and cust_ord_amnt_view.sum_amnt > avg_ord_amnt);
+  -- debug: raise exception 'greater_count: %', greater_count;
+  -- caculate count of order by the best buyer
+  no_of_ord = (select count(1) from cust_order natural join cust_sum_amnt_count_view
+  where cust_sum_amnt_count_view.rank = 1);
+  --debug::raise exception 'no_of_ord: %', no_of_ord;
+  -- caculate count of order by best costomer
+  per_of_ord = greater_count/no_of_ord :: numeric;
+  -- debug::raise exception 'per_of_ord: %', per_of_ord;
+  RETURN per_of_ord;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT best_perc_of_ord();
+
+--Q4)-a)
+-- Create view1
+DROP materialized VIEW IF EXISTS View1 CASCADE;
+CREATE MATERIALIZED VIEW View1 AS
+SELECT c.CustomerId, F_Name, L_Name, District, TimeId,
+DayOfWeek, ISBN, Amnt
+FROM Sales_fact NATURAL JOIN Customer_dim c NATURAL JOIN Time_dim;
+
+-- Create view2
+DROP materialized VIEW IF EXISTS View2 CASCADE;
+CREATE MATERIALIZED VIEW View2 AS
+SELECT c.CustomerId, F_Name, L_Name, Year, SUM(Amnt)
+FROM Sales_fact NATURAL JOIN Customer_dim c NATURAL JOIN Time_dim
+GROUP BY c.CustomerId, F_Name, L_Name, Year;
+
+-- Create view3
+DROP materialized VIEW IF EXISTS View3 CASCADE;
+CREATE MATERIALIZED VIEW View3 AS
+SELECT District, TimeId, DayOfWeek, ISBN, SUM(Amnt)
+FROM Sales_fact NATURAL JOIN Customer_dim NATURAL JOIN Time_Dim
+GROUP BY District, TimeId, DayOfWeek, ISBN;
+
+--a)
+--1. The “Book Orders Database”
+EXPLAIN ANALYZE
+SELECT c.customerid,
+       sum(b.price*od.quantity)
+FROM customer c
+NATURAL JOIN cust_order co
+NATURAL JOIN order_detail od
+NATURAL JOIN book b
+GROUP BY c.customerid
+ORDER BY sum(b.price*od.quantity) DESC
+LIMIT 1;
+
+--2. The “The Data Mart”
+EXPLAIN ANALYZE
+SELECT customer_dim.customerid,
+              customer_dim.l_name,
+              customer_dim.f_name
+FROM customer_dim
+NATURAL JOIN sales_fact
+GROUP BY customer_dim.customerid,
+                    customer_dim.l_name,
+                    customer_dim.f_name
+ORDER BY sum(amnt) DESC
+LIMIT 5;
+
+--3. The view View1
+EXPLAIN ANALYZE
+SELECT View1.CustomerId,
+       View1.F_Name,
+       View1.L_Name,
+       sum(amnt) AS sum_amnt
+FROM view1
+GROUP BY View1.CustomerId,
+         View1.F_Name,
+         View1.L_Name 
+ORDER BY sum(amnt) DESC
+LIMIT 5;
+
+--4. The view View2
+EXPLAIN ANALYZE
+SELECT View2.CustomerId,
+       View2.F_Name,
+       View2.L_Name,
+       sum(SUM) AS sum_amnt
+FROM View2
+GROUP BY View2.CustomerId,
+         View2.F_Name,
+         View2.L_Name 
+ORDER BY sum(SUM) DESC
+LIMIT 5;
+
+--b)
+--1. The “Book Orders Database”
+EXPLAIN ANALYZE
+SELECT c.country, sum(b.price*od.quantity)
+FROM customer c
+NATURAL JOIN cust_order co
+NATURAL JOIN order_detail od
+NATURAL JOIN book b
+GROUP BY c.country
+ORDER BY sum(b.price*od.quantity) DESC
+LIMIT 1;
+
+--2. The Data Mart,
+EXPLAIN ANALYZE
+SELECT country, sum(amnt)
+FROM customer_dim
+NATURAL JOIN sales_fact
+GROUP BY country
+ORDER BY sum(amnt) DESC
+LIMIT 1;
+
+--3. The view View2
+EXPLAIN ANALYZE
+SELECT country, sum(sum)
+FROM View2
+NATURAL JOIN customer_dim
+GROUP BY country
+ORDER BY sum(sum) DESC
+LIMIT 1;
+
+--4. The view View3.
+EXPLAIN ANALYZE
+SELECT country, sum(sum)
+FROM View3
+NATURAL JOIN
+  (SELECT DISTINCT district, country FROM customer_dim) AS tmp_cust
+GROUP BY country
+ORDER BY sum(sum) DESC
+LIMIT 1;
+
+--Q5)-a
+--Display sum ammounts per customer and avg ammount per customer in a city.
+SELECT customerid, f_name, city, sum_amnt,
+       avg(sum_amnt) OVER (PARTITION BY city) AS AVG
+FROM
+  (SELECT customerid, f_name, city, sum(amnt) AS sum_amnt
+   FROM sales_fact
+   NATURAL JOIN customer_dim
+   NATURAL JOIN time_dim
+   WHERE (MONTH= 'April' OR MONTH= 'May') AND YEAR=2017
+   GROUP BY customerid, f_name, city) AS tmp
+ORDER BY city;
+
+--Q5-b) Display daily sum and cumulative sum by orderdate in a city.
+SELECT DISTINCT city, timeid, orderdate AS day, daily_sum, cumulative_sum
+FROM
+  (SELECT city, timeid, orderdate,
+                 sum(amnt) OVER w1 AS daily_sum,
+                 sum(amnt) OVER w2 AS cumulative_sum
+   FROM sales_fact
+   NATURAL JOIN time_dim
+   NATURAL JOIN customer_dim
+   WHERE (MONTH = 'April' OR MONTH = 'May') AND YEAR=2017 
+       WINDOW w1 AS (PARTITION BY city, orderdate),
+                          w2 AS (PARTITION BY city ORDER BY orderdate) ) AS tmp
+ORDER BY city, orderdate;
+

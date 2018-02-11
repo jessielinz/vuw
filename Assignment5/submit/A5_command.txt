@@ -1,0 +1,601 @@
+Q1.
+Step 1:Create dimentsion and fact tables
+
+CREATE TABLE customer_dim (
+    customerid integer primary key,
+    l_name character(20) NOT NULL,
+    f_name character(20),
+    city character(15) NOT NULL,
+    district character(15) NOT NULL,
+    country character(15) NOT NULL,
+    CONSTRAINT customer_customerid CHECK ((customerid > 0))
+);
+
+CREATE Table time_dim(
+	timeid SERIAL primary key,
+	orderdate date not null,
+	dayofweek char(10) not null,
+	month char(10) not null,
+	year int not null
+);
+
+CREATE TABLE book_dim (
+    isbn integer primary key,
+    title character(60) NOT NULL,
+    edition_no smallint DEFAULT 1,
+    price numeric(6,2) NOT NULL,
+    CONSTRAINT book_edition_no CHECK ((edition_no > 0)),
+    CONSTRAINT book_price CHECK ((price > (0)::numeric))
+);
+
+CREATE table sales_fact(
+	customerid int NOT NULL,
+	timeid int NOT NULL,
+    isbn int NOT NULL,
+    amnt numeric(6,2) NOT NULL,
+	FOREIGN KEY (customerid) REFERENCES customer_dim(customerid),
+	FOREIGN KEY (timeid) REFERENCES time_dim(timeid),
+  FOREIGN KEY (isbn) REFERENCES book_dim(isbn),
+  CONSTRAINT amnt CHECK ((amnt > (0)::numeric))
+);
+
+ALTER TABLE ONLY sales_fact
+    ADD CONSTRAINT sales_fact_pkey PRIMARY KEY (customerid, timeid, isbn);
+
+    lijins=> \dt
+               List of relations
+     Schema |     Name     | Type  | Owner
+    --------+--------------+-------+--------
+     public | author       | table | lijins
+     public | book         | table | lijins
+     public | book_author  | table | lijins
+     public | book_dim     | table | lijins
+     public | cust_order   | table | lijins
+     public | customer     | table | lijins
+     public | customer_dim | table | lijins
+     public | order_detail | table | lijins
+     public | sales_fact   | table | lijins
+     public | time_dim     | table | lijins
+    (10 rows)
+
+Step 2.Extract data from existing tables
+
+insert into customer_dim (orderdate, dayofweek, month, year) (
+  select orderdate, to_char(orderdate,'Day'),to_char(orderdate,'Month'), to_number(to_char(orderdate,'YYYY'),'9999')
+  from customer
+  order by orderdate
+);
+
+INSERT 0 118
+
+insert into time_dim (orderdate, dayofweek, month, year) (
+  select distinct orderdate, to_char(orderdate,'Day'),to_char(orderdate,'Month'), to_number(to_char(orderdate,'YYYY'),'9999')
+  from cust_order
+  order by orderdate
+);
+
+INSERT 0 124
+
+insert into book_dim (isbn, title, edition_no, price) (
+  select isbn, title, edition_no, price
+  from book
+);
+
+INSERT 0 12
+
+insert into sales_fact (customerid, timeid, isbn, amnt) (
+  select cust_order_book_detail.customerid, time_dim.timeid, cust_order_book_detail.isbn, cust_order_book_detail.price as price, cust_order_book_detail.quantity * cust_order_book_detail.price as amnt from
+  (select cust_order_detail.customerid, cust_order_detail.orderdate, cust_order_detail.isbn, cust_order_detail.quantity, book_dim.price from 
+    (select cust_order.customerid, cust_order.orderdate, order_detail.isbn, sum(order_detail.quantity) quantity  from cust_order 
+      natural join order_detail 
+      group by cust_order.customerid, cust_order.orderdate, order_detail.isbn) as cust_order_detail 
+  natural join book_dim) as cust_order_book_detail 
+  inner join time_dim on cust_order_book_detail.orderdate = time_dim.orderdate
+);
+
+INSERT 0 1070
+
+Q2.
+create materialized view avg_amnt_view as 
+  select customerid, avg(amnt) as avg_amnt from sales_fact 
+  group by customerid;
+
+SELECT 104
+
+Query1: select avg(avg_amnt) from avg_amnt_view;
+         avg
+----------------------
+ 202.9588687852809865
+(1 row)
+
+Query2: select avg(amnt) from sales_fact;
+         avg
+----------------------
+ 161.3691588785046729
+(1 row)
+
+The result of query1 is the average money spent per customer.
+The result of query2 is the average money spent per customer, per orderdate, per book.isbn.
+So the result of query2 was correct.
+
+Q3.
+a) Use "Rank()" and "Limit" operations.
+create materialized view cust_sum_amnt_count_view as 
+  select customerid, sum(amnt) as sum_amnt, rank() over (order by sum(amnt) desc) rank, count(1) from sales_fact 
+  group by customerid;
+
+select customer_dim.customerid,customer_dim.l_name,customer_dim.f_name from customer_dim 
+natural join cust_sum_amnt_count_view 
+where cust_sum_amnt_count_view.rank < 6;
+
+ customerid |        l_name        |        f_name
+------------+----------------------+----------------------
+          1 | Jacson               | Kirk
+          2 | Leow                 | May-N
+          3 | Andree               | Peter
+         14 | Anslow               | Craig
+         79 | Liang                | Jiajun
+(5 rows)
+
+b)
+
+CREATE OR REPLACE FUNCTION best_perc_of_ord() RETURNS numeric AS $$
+DECLARE
+sum_amnt numeric;
+ord_count int;
+avg_ord_amnt numeric;
+per_of_ord numeric;
+greater_count int;
+no_of_ord int;
+BEGIN
+  --get customer rank by amnt
+  drop materialized view if exists cust_sum_amnt_count_view;
+  create materialized view cust_sum_amnt_count_view as
+  select customerid, sum(amnt) as sum_amnt, rank() over (order by sum(amnt) desc) rank, count(1) from sales_fact
+  group by customerid;
+  --caculate amount of per order, per customer
+  drop materialized view if exists cust_ord_amnt_view;
+  CREATE materialized VIEW cust_ord_amnt_view as
+   SELECT cust_order.customerid,
+          ord_book_amnt.orderid,
+          SUM(ord_book_amnt.amnt) sum_amnt
+   FROM   cust_order
+          NATURAL join (SELECT order_detail.orderid,
+                               order_detail.isbn,
+                               SUM(order_detail.quantity) * book_dim.price AS
+                               amnt
+                        FROM   order_detail
+                               NATURAL join book_dim
+                        GROUP  BY order_detail.orderid,
+                                  order_detail.isbn,
+                                  book_dim.price) AS ord_book_amnt
+   GROUP  BY cust_order.customerid,
+             ord_book_amnt.orderid;
+  sum_amnt = (SELECT sum(amnt) AS sum_amnt FROM sales_fact);
+  ord_count = (SELECT count(1) AS ord_count FROM cust_order);
+  avg_ord_amnt = sum_amnt/ord_count;
+  --raise exception 'avg_ord_amnt: %', avg_ord_amnt;
+  greater_count = (select count(1)
+  from cust_ord_amnt_view inner join cust_sum_amnt_count_view
+  on cust_ord_amnt_view.customerid = cust_sum_amnt_count_view.customerid
+  where cust_sum_amnt_count_view.rank = 1
+  and cust_ord_amnt_view.sum_amnt > avg_ord_amnt);
+  --raise exception 'greater_count: %', greater_count;
+  no_of_ord = (select count(1) from cust_order natural join cust_sum_amnt_count_view
+  where cust_sum_amnt_count_view.rank = 1);
+  --raise exception 'no_of_ord: %', no_of_ord;
+  per_of_ord = greater_count/no_of_ord :: numeric;
+  --raise exception 'per_of_ord: %', per_of_ord;
+  RETURN per_of_ord;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT best_perc_of_ord();
+
+    best_perc_of_ord
+------------------------
+ 0.71428571428571428571
+(1 row)
+
+
+
+Q4)
+a)
+drop  materialized view if exists View1 CASCADE ;
+CREATE MATERIALIZED VIEW View1 AS
+SELECT c.CustomerId, F_Name, L_Name, District, TimeId,
+DayOfWeek, ISBN, Amnt
+FROM Sales_fact NATURAL JOIN Customer_dim c NATURAL JOIN Time_dim;
+
+drop  materialized view if exists View2 CASCADE;
+CREATE MATERIALIZED VIEW View2 AS
+SELECT c.CustomerId, F_Name, L_Name, Year, SUM(Amnt)
+FROM Sales_fact NATURAL JOIN Customer_dim c NATURAL JOIN Time_dim
+GROUP BY c.CustomerId, F_Name, L_Name, Year;
+
+--1. The “Book Orders Database”
+EXPLAIN ANALYZE
+SELECT c.customerid,
+       sum(b.price*od.quantity)
+FROM customer c
+NATURAL JOIN cust_order co
+NATURAL JOIN order_detail od
+NATURAL JOIN book b
+GROUP BY c.customerid
+ORDER BY sum(b.price*od.quantity) DESC
+LIMIT 1;
+                                                                       QUERY PLAN
+
+--------------------------------------------------------------------------------------------------------------------------------------
+------------------
+ Limit  (cost=78.29..78.29 rows=1 width=20) (actual time=12.129..12.130 rows=1 loops=1)
+   ->  Sort  (cost=78.29..78.58 rows=118 width=20) (actual time=12.125..12.125 rows=1 loops=1)
+         Sort Key: (sum((b.price * (od.quantity)::numeric)))
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  HashAggregate  (cost=76.22..77.70 rows=118 width=20) (actual time=11.784..11.934 rows=104 loops=1)
+               Group Key: c.customerid
+               ->  Hash Join  (cost=15.97..65.22 rows=1100 width=20) (actual time=1.649..9.118 rows=1100 loops=1)
+                     Hash Cond: (od.isbn = b.isbn)
+                     ->  Hash Join  (cost=14.70..48.83 rows=1100 width=10) (actual time=1.585..6.073 rows=1100 loops=1)
+                           Hash Cond: (od.orderid = co.orderid)
+                           ->  Seq Scan on order_detail od  (cost=0.00..19.00 rows=1100 width=10) (actual time=0.008..1.463 rows=1100
+loops=1)
+                           ->  Hash  (cost=11.93..11.93 rows=222 width=8) (actual time=1.564..1.564 rows=222 loops=1)
+                                 Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                 ->  Hash Join  (cost=4.65..11.93 rows=222 width=8) (actual time=0.358..1.241 rows=222 loops=1)
+                                       Hash Cond: (co.customerid = c.customerid)
+                                       ->  Seq Scan on cust_order co  (cost=0.00..4.22 rows=222 width=8) (actual time=0.008..0.290 row
+s=222 loops=1)
+                                       ->  Hash  (cost=3.18..3.18 rows=118 width=4) (actual time=0.332..0.332 rows=118 loops=1)
+                                             Buckets: 1024  Batches: 1  Memory Usage: 5kB
+                                             ->  Seq Scan on customer c  (cost=0.00..3.18 rows=118 width=4) (actual time=0.005..0.159
+rows=118 loops=1)
+                     ->  Hash  (cost=1.12..1.12 rows=12 width=18) (actual time=0.049..0.049 rows=12 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 1kB
+                           ->  Seq Scan on book b  (cost=0.00..1.12 rows=12 width=18) (actual time=0.008..0.027 rows=12 loops=1)
+ Planning time: 1.023 ms
+ Execution time: 12.256 ms
+(24 rows)
+
+
+--2. The “The Data Mart”
+EXPLAIN ANALYZE
+SELECT customer_dim.customerid,
+       customer_dim.l_name,
+       customer_dim.f_name
+FROM customer_dim
+NATURAL JOIN
+  (SELECT customerid,
+          sum(amnt) AS sum_amnt,
+          rank() over (
+                       ORDER BY sum(amnt) DESC) rank,
+                 count(1)
+   FROM sales_fact
+   GROUP BY customerid) AS tmp_view
+WHERE tmp_view.rank < 6;
+                                                                  QUERY PLAN
+
+--------------------------------------------------------------------------------------------------------------------------------------
+---------
+ Hash Join  (cost=34.07..38.04 rows=35 width=46) (actual time=4.534..4.836 rows=5 loops=1)
+   Hash Cond: (customer_dim.customerid = tmp_view.customerid)
+   ->  Seq Scan on customer_dim  (cost=0.00..3.18 rows=118 width=46) (actual time=0.009..0.156 rows=118 loops=1)
+   ->  Hash  (cost=33.63..33.63 rows=35 width=4) (actual time=4.507..4.507 rows=5 loops=1)
+         Buckets: 1024  Batches: 1  Memory Usage: 1kB
+         ->  Subquery Scan on tmp_view  (cost=30.51..33.63 rows=35 width=4) (actual time=3.854..4.493 rows=5 loops=1)
+               Filter: (tmp_view.rank < 6)
+               Rows Removed by Filter: 99
+               ->  WindowAgg  (cost=30.51..32.33 rows=104 width=9) (actual time=3.844..4.348 rows=104 loops=1)
+                     ->  Sort  (cost=30.51..30.77 rows=104 width=9) (actual time=3.829..3.953 rows=104 loops=1)
+                           Sort Key: (sum(sales_fact.amnt))
+                           Sort Method: quicksort  Memory: 33kB
+                           ->  HashAggregate  (cost=25.73..27.03 rows=104 width=9) (actual time=3.393..3.544 rows=104 loops=1)
+                                 Group Key: sales_fact.customerid
+                                 ->  Seq Scan on sales_fact  (cost=0.00..17.70 rows=1070 width=9) (actual time=0.009..1.356 rows=1070
+loops=1)
+ Planning time: 0.337 ms
+ Execution time: 4.965 ms
+(17 rows)
+
+--3. The view View1
+EXPLAIN ANALYZE
+SELECT View1.CustomerId,
+       View1.F_Name,
+       View1.L_Name,
+       sum(amnt) AS sum_amnt,
+       rank() over (
+                    ORDER BY sum(amnt) DESC) rank
+FROM view1
+GROUP BY View1.CustomerId,
+         View1.F_Name,
+         View1.L_Name
+LIMIT 5;
+
+                                                         QUERY PLAN
+-------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=43.34..43.43 rows=5 width=51) (actual time=4.717..4.751 rows=5 loops=1)
+   ->  WindowAgg  (cost=43.34..45.22 rows=107 width=51) (actual time=4.714..4.739 rows=5 loops=1)
+         ->  Sort  (cost=43.34..43.61 rows=107 width=51) (actual time=4.702..4.708 rows=5 loops=1)
+               Sort Key: (sum(amnt))
+               Sort Method: quicksort  Memory: 39kB
+               ->  HashAggregate  (cost=38.40..39.74 rows=107 width=51) (actual time=4.226..4.383 rows=104 loops=1)
+                     Group Key: customerid, f_name, l_name
+                     ->  Seq Scan on view1  (cost=0.00..27.70 rows=1070 width=51) (actual time=0.011..1.378 rows=1070 loops=1)
+ Planning time: 0.158 ms
+ Execution time: 4.849 ms
+(10 rows)
+
+--4. The view View2
+EXPLAIN ANALYZE
+SELECT View2.CustomerId,
+       View2.F_Name,
+       View2.L_Name,
+       sum(sum) AS sum_amnt,
+       rank() over (
+                    ORDER BY sum(sum) DESC) rank
+FROM View2
+GROUP BY View2.CustomerId,
+         View2.F_Name,
+         View2.L_Name
+LIMIT 5;
+
+                                                         QUERY PLAN
+----------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=9.42..9.51 rows=5 width=51) (actual time=1.031..1.067 rows=5 loops=1)
+   ->  WindowAgg  (cost=9.42..11.24 rows=104 width=51) (actual time=1.027..1.051 rows=5 loops=1)
+         ->  Sort  (cost=9.42..9.68 rows=104 width=51) (actual time=1.016..1.020 rows=5 loops=1)
+               Sort Key: (sum(sum))
+               Sort Method: quicksort  Memory: 39kB
+               ->  HashAggregate  (cost=4.64..5.94 rows=104 width=51) (actual time=0.552..0.712 rows=104 loops=1)
+                     Group Key: customerid, f_name, l_name
+                     ->  Seq Scan on view2  (cost=0.00..3.32 rows=132 width=51) (actual time=0.012..0.185 rows=132 loops=1)
+ Planning time: 0.159 ms
+ Execution time: 1.161 ms
+(10 rows)
+
+Explain the findings:  the cost of the execution of the QUERY drops as more aggregate function perform in MATERILIAZED view level .
+
+Qb)
+--1. The “Book Orders Database”
+EXPLAIN ANALYZE
+SELECT c.country,
+       sum(b.price*od.quantity)
+FROM customer c
+NATURAL JOIN cust_order co
+NATURAL JOIN order_detail od
+NATURAL JOIN book b
+GROUP BY c.country
+ORDER BY sum(b.price*od.quantity) DESC
+LIMIT 1;
+
+                                                                       QUERY PLAN
+
+--------------------------------------------------------------------------------------------------------------------------------------
+-------------------
+ Limit  (cost=76.34..76.35 rows=1 width=32) (actual time=12.488..12.490 rows=1 loops=1)
+   ->  Sort  (cost=76.34..76.36 rows=7 width=32) (actual time=12.483..12.483 rows=1 loops=1)
+         Sort Key: (sum((b.price * (od.quantity)::numeric)))
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  HashAggregate  (cost=76.22..76.31 rows=7 width=32) (actual time=12.367..12.380 rows=7 loops=1)
+               Group Key: c.country
+               ->  Hash Join  (cost=15.97..65.22 rows=1100 width=32) (actual time=1.872..9.347 rows=1100 loops=1)
+                     Hash Cond: (od.isbn = b.isbn)
+                     ->  Hash Join  (cost=14.70..48.83 rows=1100 width=22) (actual time=1.761..6.284 rows=1100 loops=1)
+                           Hash Cond: (od.orderid = co.orderid)
+                           ->  Seq Scan on order_detail od  (cost=0.00..19.00 rows=1100 width=10) (actual time=0.008..1.468 rows=1100
+loops=1)
+                           ->  Hash  (cost=11.93..11.93 rows=222 width=20) (actual time=1.694..1.694 rows=222 loops=1)
+                                 Buckets: 1024  Batches: 1  Memory Usage: 12kB
+                                 ->  Hash Join  (cost=4.65..11.93 rows=222 width=20) (actual time=0.439..1.320 rows=222 loops=1)
+                                       Hash Cond: (co.customerid = c.customerid)
+                                       ->  Seq Scan on cust_order co  (cost=0.00..4.22 rows=222 width=8) (actual time=0.010..0.284 row
+s=222 loops=1)
+                                       ->  Hash  (cost=3.18..3.18 rows=118 width=20) (actual time=0.372..0.372 rows=118 loops=1)
+                                             Buckets: 1024  Batches: 1  Memory Usage: 6kB
+                                             ->  Seq Scan on customer c  (cost=0.00..3.18 rows=118 width=20) (actual time=0.007..0.175
+ rows=118 loops=1)
+                     ->  Hash  (cost=1.12..1.12 rows=12 width=18) (actual time=0.049..0.049 rows=12 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 1kB
+                           ->  Seq Scan on book b  (cost=0.00..1.12 rows=12 width=18) (actual time=0.008..0.027 rows=12 loops=1)
+ Planning time: 3.278 ms
+ Execution time: 12.947 ms
+(24 rows)
+
+
+--2. The Data Mart,
+EXPLAIN ANALYZE
+SELECT sum(amnt), country
+FROM customer_dim
+NATURAL JOIN sales_fact
+GROUP BY country
+ORDER BY sum(amnt) DESC
+LIMIT 1;
+                                                               QUERY PLAN
+
+--------------------------------------------------------------------------------------------------------------------------------------
+---
+ Limit  (cost=42.54..42.54 rows=1 width=21) (actual time=7.152..7.154 rows=1 loops=1)
+   ->  Sort  (cost=42.54..42.56 rows=7 width=21) (actual time=7.147..7.147 rows=1 loops=1)
+         Sort Key: (sum(sales_fact.amnt))
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  HashAggregate  (cost=42.42..42.50 rows=7 width=21) (actual time=7.105..7.117 rows=7 loops=1)
+               Group Key: customer_dim.country
+               ->  Hash Join  (cost=4.65..37.07 rows=1070 width=21) (actual time=0.620..4.946 rows=1070 loops=1)
+                     Hash Cond: (sales_fact.customerid = customer_dim.customerid)
+                     ->  Seq Scan on sales_fact  (cost=0.00..17.70 rows=1070 width=9) (actual time=0.013..1.366 rows=1070 loops=1)
+                     ->  Hash  (cost=3.18..3.18 rows=118 width=20) (actual time=0.353..0.353 rows=118 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 6kB
+                           ->  Seq Scan on customer_dim  (cost=0.00..3.18 rows=118 width=20) (actual time=0.008..0.174 rows=118 loops=
+1)
+ Planning time: 9.462 ms
+ Execution time: 7.266 ms
+(14 rows)
+
+
+--3. The view View2, and
+EXPLAIN ANALYZE
+SELECT sum(sum), country
+FROM View2
+NATURAL JOIN customer
+GROUP BY country
+ORDER BY sum(sum) DESC
+LIMIT 1;
+                                                                     QUERY PLAN
+
+--------------------------------------------------------------------------------------------------------------------------------------
+---------------
+ Limit  (cost=10.09..10.09 rows=1 width=21) (actual time=1.454..1.456 rows=1 loops=1)
+   ->  Sort  (cost=10.09..10.09 rows=1 width=21) (actual time=1.450..1.450 rows=1 loops=1)
+         Sort Key: (sum(view2.sum))
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  HashAggregate  (cost=10.06..10.08 rows=1 width=21) (actual time=1.411..1.421 rows=7 loops=1)
+               Group Key: customer.country
+               ->  Hash Join  (cost=5.25..10.06 rows=1 width=21) (actual time=0.450..1.120 rows=132 loops=1)
+                     Hash Cond: ((view2.customerid = customer.customerid) AND (view2.f_name = customer.f_name) AND (view2.l_name = cus
+tomer.l_name))
+                     ->  Seq Scan on view2  (cost=0.00..3.32 rows=132 width=51) (actual time=0.011..0.170 rows=132 loops=1)
+                     ->  Hash  (cost=3.18..3.18 rows=118 width=62) (actual time=0.413..0.413 rows=118 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 11kB
+                           ->  Seq Scan on customer  (cost=0.00..3.18 rows=118 width=62) (actual time=0.008..0.173 rows=118 loops=1)
+ Planning time: 30.516 ms
+ Execution time: 1.561 ms
+(14 rows)
+
+--4. The view View3.
+drop  materialized view if exists View3 CASCADE;
+CREATE MATERIALIZED VIEW View3 AS
+SELECT District, TimeId, DayOfWeek, ISBN, SUM(Amnt)
+FROM Sales_fact NATURAL JOIN Customer_dim NATURAL JOIN Time_Dim
+GROUP BY District, TimeId, DayOfWeek, ISBN;
+
+EXPLAIN ANALYZE
+SELECT sum(sum), country
+FROM View3
+NATURAL JOIN (select distinct district, country from customer_dim) as tmp_cust
+GROUP BY country
+ORDER BY sum(sum) DESC
+LIMIT 1;
+
+                                                                     QUERY PLAN
+
+--------------------------------------------------------------------------------------------------------------------------------------
+---------------
+ Limit  (cost=42.61..42.61 rows=1 width=21) (actual time=6.907..6.908 rows=1 loops=1)
+   ->  Sort  (cost=42.61..42.65 rows=16 width=21) (actual time=6.903..6.903 rows=1 loops=1)
+         Sort Key: (sum(view3.sum))
+         Sort Method: top-N heapsort  Memory: 25kB
+         ->  HashAggregate  (cost=42.33..42.53 rows=16 width=21) (actual time=6.863..6.872 rows=7 loops=1)
+               Group Key: tmp_cust.country
+               ->  Hash Join  (cost=4.29..37.59 rows=947 width=21) (actual time=0.542..4.879 rows=1006 loops=1)
+                     Hash Cond: (view3.district = tmp_cust.district)
+                     ->  Seq Scan on view3  (cost=0.00..20.06 rows=1006 width=21) (actual time=0.011..1.310 rows=1006 loops=1)
+                     ->  Hash  (cost=4.09..4.09 rows=16 width=32) (actual time=0.511..0.511 rows=17 loops=1)
+                           Buckets: 1024  Batches: 1  Memory Usage: 2kB
+                           ->  Subquery Scan on tmp_cust  (cost=3.77..4.09 rows=16 width=32) (actual time=0.417..0.480 rows=17 loops=1
+)
+                                 ->  HashAggregate  (cost=3.77..3.93 rows=16 width=32) (actual time=0.414..0.437 rows=17 loops=1)
+                                       Group Key: customer_dim.district, customer_dim.country
+                                       ->  Seq Scan on customer_dim  (cost=0.00..3.18 rows=118 width=32) (actual time=0.009..0.179 row
+s=118 loops=1)
+ Planning time: 0.403 ms
+ Execution time: 7.014 ms
+(17 rows)
+
+Q5)
+a)
+SELECT DISTINCT customerid, f_name, city, sum, avg
+FROM
+  ( SELECT customerid, f_name, city,
+           sum(amnt) OVER (PARTITION BY customerid) as sum,
+           avg(amnt) OVER (PARTITION BY city) as avg
+   FROM sales_fact
+   NATURAL JOIN customer_dim
+   NATURAL JOIN time_dim
+   WHERE (month= 'April' OR month= 'May')
+     AND year=2017 ) AS tmp
+ORDER BY city ;
+
+ customerid |        f_name        |      city       |   sum   |         avg
+------------+----------------------+-----------------+---------+----------------------
+         94 | Shweta               | Auckland        | 3615.00 | 197.5000000000000000
+         95 | Priyanka             | Auckland        | 1440.00 | 197.5000000000000000
+        113 | Tao                  | Auckland        | 2055.00 | 197.5000000000000000
+        107 | Xiaoxing             | Beijing         | 1550.00 | 115.7500000000000000
+        116 | Adrian               | Beijing         |  765.00 | 115.7500000000000000
+        100 | Zoltan               | Budapest        | 2710.00 | 225.8333333333333333
+         98 | Valerie              | Christchurch    |  925.00 | 104.8611111111111111
+         99 | Nathan               | Christchurch    |  785.00 | 104.8611111111111111
+        115 | Christopher          | Christchurch    | 2065.00 | 104.8611111111111111
+        108 | Aaron                | Lower Hutt      | 1555.00 | 155.5000000000000000
+        118 | Daniel               | Masterton       | 1465.00 | 732.5000000000000000
+        101 | Benjamin             | Mumbai          | 1245.00 | 113.1818181818181818
+         97 | Cameron              | Porirua         | 1475.00 |  99.8076923076923077
+        112 | Bilal                | Porirua         | 1120.00 |  99.8076923076923077
+        102 | Leila                | Sidney          | 1165.00 | 163.2692307692307692
+        103 | Mansi                | Sidney          | 3080.00 | 163.2692307692307692
+         96 | Jovan                | Skopje          |  775.00 |  77.5000000000000000
+        110 | Ronni                | Upper Hutt      | 1490.00 | 135.4545454545454545
+        104 | Mansour              | Wellington      | 1425.00 | 121.5789473684210526
+        109 | Neel                 | Wellington      | 1440.00 | 121.5789473684210526
+        111 | Kaszandra            | Wellington      | 1360.00 | 121.5789473684210526
+        114 | Harman               | Wellington      |  395.00 | 121.5789473684210526
+        105 | Jessie               | Wuhan           | 1670.00 | 156.7647058823529412
+        106 | Li                   | Wuhan           | 2035.00 | 156.7647058823529412
+        117 | Lei                  | Wuhan           | 1625.00 | 156.7647058823529412
+(25 rows)
+
+b)
+SELECT DISTINCT city, timeid, orderdate as day, sum, cumulative_sum
+FROM
+  (SELECT city,
+          timeid,
+          orderdate,
+          sum(amnt) OVER w1 AS sum,
+          sum(amnt) OVER w2 AS cumulative_sum
+   FROM sales_fact
+   NATURAL JOIN time_dim
+   NATURAL JOIN customer_dim
+   WHERE (month = 'April' OR month = 'May')
+     AND year=2017 
+   WINDOW w1 AS (PARTITION BY city,orderdate),
+          w2 AS (PARTITION BY city ORDER BY orderdate) ) AS tmp
+ORDER BY city, orderdate;
+
+      city       | timeid |    day     |   sum   | cumulative_sum
+-----------------+--------+------------+---------+----------------
+ Auckland        |    341 | 2017-04-23 |  360.00 |         360.00
+ Auckland        |    342 | 2017-04-29 | 4500.00 |        4860.00
+ Auckland        |    343 | 2017-04-30 | 2805.00 |        7665.00
+ Auckland        |    344 | 2017-05-05 | 3390.00 |       11055.00
+ Beijing         |    339 | 2017-04-21 | 1550.00 |        1550.00
+ Beijing         |    346 | 2017-05-15 |  765.00 |        2315.00
+ Budapest        |    333 | 2017-04-15 | 8130.00 |        8130.00
+ Christchurch    |    332 | 2017-04-14 |  925.00 |         925.00
+ Christchurch    |    333 | 2017-04-15 |  785.00 |        1710.00
+ Christchurch    |    344 | 2017-05-05 |  175.00 |        1885.00
+ Christchurch    |    345 | 2017-05-06 | 5430.00 |        7315.00
+ Christchurch    |    346 | 2017-05-15 |   80.00 |        7395.00
+ Lower Hutt      |    340 | 2017-04-22 | 1555.00 |        1555.00
+ Masterton       |    346 | 2017-05-15 | 2930.00 |        2930.00
+ Mumbai          |    334 | 2017-04-16 | 1245.00 |        1245.00
+ Porirua         |    330 | 2017-04-12 |  170.00 |         170.00
+ Porirua         |    331 | 2017-04-13 | 2270.00 |        2440.00
+ Porirua         |    332 | 2017-04-14 |  170.00 |        2610.00
+ Porirua         |    344 | 2017-05-05 | 1120.00 |        3730.00
+ Sidney          |    334 | 2017-04-16 |  850.00 |         850.00
+ Sidney          |    335 | 2017-04-17 | 1305.00 |        2155.00
+ Sidney          |    336 | 2017-04-18 | 6270.00 |        8425.00
+ Skopje          |    330 | 2017-04-12 |  775.00 |         775.00
+ Upper Hutt      |    340 | 2017-04-22 | 2980.00 |        2980.00
+ Wellington      |    336 | 2017-04-18 | 1425.00 |        1425.00
+ Wellington      |    340 | 2017-04-22 | 1440.00 |        2865.00
+ Wellington      |    341 | 2017-04-23 | 1360.00 |        4225.00
+ Wellington      |    345 | 2017-05-06 |  395.00 |        4620.00
+ Wuhan           |    337 | 2017-04-19 | 1735.00 |        1735.00
+ Wuhan           |    338 | 2017-04-20 | 3050.00 |        4785.00
+ Wuhan           |    339 | 2017-04-21 |  195.00 |        4980.00
+ Wuhan           |    340 | 2017-04-22 |  500.00 |        5480.00
+ Wuhan           |    346 | 2017-05-15 | 3250.00 |        8730.00
+(33 rows)
+
+

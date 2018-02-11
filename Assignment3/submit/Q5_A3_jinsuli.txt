@@ -1,0 +1,20 @@
+a)
+db.res_ref.find({"reserves.date":"2017-03-16"}, { _id: 0, marina:1, "reserves.boat":1, "reserves.sailor":1 })
+
+db.boat.findOne({marina:"Sea View", number:313},{_id:0, name:1});
+
+db.sailor.findOne({sailorId:111},{_id:0, name:1});
+
+db.boat.findOne({marina:"Port Nicholson", number:919},{_id:0, name:1});
+
+db.sailor.findOne({sailorId:818},{_id:0, name:1});
+
+b)
+var curs = db.res_ref.find({"reserves.date":"2017-03-16"}, { _id: 0, marina:1, "reserves.boat":1, "reserves.sailor":1 })
+while (curs.hasNext()) {
+... tmp_res=curs.next();
+... tmp_boat=db.boat.findOne({marina:tmp_res.marina, number:tmp_res.reserves.boat},{_id:0, name:1});
+... tmp_sailor=db.sailor.findOne({sailorId:tmp_res.reserves.sailor},{_id:0, name:1});
+... ret={marina_name:tmp_res.marina, boat_name:tmp_boat.name,sailor_name:tmp_sailor.name}
+... print(tojson(ret))
+... }

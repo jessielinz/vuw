@@ -1,0 +1,17 @@
+a)
+db.reserves.count()
+
+b)
+db.reserves.count({"marina.name":"Port Nicholson"})
+
+c)
+db.reserves.distinct("reserves.sailor.name")
+
+d)
+db.reserves.find({"reserves.date":"2017-03-16"},{ "marina.name": 1, "reserves.boat.name": 1,"reserves.sailor.name":1, "_id":0 })
+
+e)
+db.reserves.distinct("reserves.sailor.name", {"reserves.sailor.skills":"swim"})
+
+f)
+db.reserves.distinct("reserves.sailor.name", {"reserves.sailor.skills":{ $all:["row","sail","motor"], $size: 3}})

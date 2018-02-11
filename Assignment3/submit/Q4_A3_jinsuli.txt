@@ -1,0 +1,5 @@
+a)
+db.sailor.distinct("name");
+
+b)
+db.sailor.distinct("name", {"skills":{ $all:["row","sail","motor"], $size: 3}})

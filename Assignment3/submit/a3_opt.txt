@@ -1,0 +1,97 @@
+mongoimport --db test --collection reserves --file ~/private/a3/reserves_17.txt
+mongoimport --db test --collection marina --file ~/private/a3/marina_17.txt
+mongoimport --db test --collection sailor --file ~/private/a3/sailor_17.txt
+mongoimport --db test --collection boat --file ~/private/a3/boat_17.txt
+mongoimport --db test --collection res_ref --file ~/private/a3/res_ref_17.txt
+
+db.reserves.find({"marina.name":{$regex: /^Port/}});
+
+db.reserves.update(
+{"marina.name": {$regex: /^Port/}},
+{$set: {"marina.name": "Port Nicholson"},
+$currentDate:{lastModified:true}},
+{multi:true}
+)
+
+db.reserves.find({"_id":ObjectId("54f102de0b54b61a031776ed")})
+
+db.reserves.update(
+... {"_id":ObjectId("54f102de0b54b61a031776ed")},
+... {$rename: {"reserves.boat.numbver": "reserves.boat.number"}}
+... )
+
+var missReserve = { "marina" : { "name" : "Port Nicholson", "location" : "Wellington" }, "reserves" : { "boat" : { "name" : "Tarakihi", "number" : 717, "color" : "red", "driven_by" : [ "row", "motor" ] }, "sailor" : { "name" : "Eileen", "sailorId" : 919, "skills" : [ "sail", "motor", "swim" ], "address" : "Lower Hutt" }, "date" : "2017-03-25" } }
+db.reserves.insert(missReserve)
+
+db.reserves.insert({ "_id" : new ObjectId(), "marina" : { "name" : "Port Nicholson", "location" : "Wellington" }, "reserves" : { "boat" : { "name" : "Tarakihi", "number" : 717, "color" : "red", "driven_by" : [ "row", "motor" ] }, "sailor" : { "name" : "Eileen", "sailorId" : 919, "skills" : [ "sail", "motor", "swim" ], "address" : "Lower Hutt" }, "date" : "2017-03-25" } })
+
+db.reserves.insert({ "marina" : { "name" : "Port Nicholson", "location" : "Wellington" }, "reserves" : { "boat" : { "name" : "Tarakihi", "number" : 717, "color" : "red", "driven_by" : [ "row", "motor" ] }, "sailor" : { "name" : "Eileen", "sailorId" : 919, "skills" : [ "sail", "motor", "swim" ], "address" : "Lower Hutt" }, "date" : "2017-03-25" } })
+
+db.reserves.find({"marina.name":{$regex: /^Port/}},{ "marina.name": 1, "reserves.boat.number": 1,"reserves.sailor.sailorId":1 })
+
+db.reserves.insert({"marina" : { "name" : "Port NIckolson", "location" : "Wellington" }, "reserves" : { "boat" : { "name" : "Dolphin", "number" : 110, "color" : "white", "driven_by" : [ ] }, "sailor" : { "name" : "James", "sailorId" : 707, "skills" : [ "row", "sail", "motor", "fish" ], "address" : "Wellington" }, "date" : "2017-03-28" } })
+
+db.reserves.find({"marina.name":{$regex: /^Port/}},{ "marina.name": 1, "reserves.boat.number": 1,"reserves.sailor.sailorId":1,"reserves.date":1 })
+
+db.reserves.insert({"marina" : { "name" : "Sea View", "location" : "Petone" }, "reserves" : { "boat" : { name: "Night Breeze", number: 818, color: "black", driven_by: ["row"]}, "sailor" : { "name" : "Paul", "sailorId" : 110, "skills" : [ "row", "swim" ], "address" : "Upper Hutt" }, "date" : "2017-03-29" } })
+
+db.reserves.remove({"marina.name":"Sea View", "reserves.date":"2017-03-28"})
+db.reserves.getIndexes()
+db.reserves.dropIndexes()
+db.reserves.createIndex( { "reserves.boat.number": 1, "reserves.date":1 }, { unique: true, name: "boat_date_idx" } )
+db.reserves.createIndex( { "reserves.sailor.sailorId": 1, "reserves.date":1 }, { unique: true, name: "sailor_date_idx" } )
+db.reserves.ensureIndex( { "reserves.boat.number": 1, "reserves.date":1 }, { unique: true } )
+db.reserves.ensureIndex( { "reserves.sailor.sailorId":1, "reserves.date":1 }, { unique: true } )
+db.reserves.insert({"marina" : { "name" : "Sea View", "location" : "Petone" }, "reserves" : { "boat" : { name: "Night Breeze", number: 818, color: "black", driven_by: ["row"]}, "sailor" : { "name" : "Milan", "sailorId" : 818, "skills" : [ "row", "sail", "motor", "first aid" ], "address" : "Wellington" }, "date" : "2017-03-21" } })
+
+db.reserves.insert({"marina" : { "name" : "Sea View", "location" : "Petone" }, "reserves" : { "boat" : { name: "Night Breeze", number: 818, color: "black", driven_by: ["row"]}, "sailor" : { "name" : "Paul", "sailorId" : 110, "skills" : [ "row", "swim" ], "address" : "Upper Hutt" }, "date" : "2017-03-28" } })
+
+db.reserves.count()
+
+db.reserves.count({"marina.name":"Port Nicholson"})
+
+db.reserves.distinct("reserves.sailor.name")
+
+
+db.reserves.find({"reserves.date":"2017-03-16"},{ "marina.name": 1, "reserves.boat.name": 1,"reserves.sailor.name":1, "_id":0 })
+
+db.reserves.distinct("reserves.sailor.name", {"reserves.sailor.skills":"swim"})
+
+db.reserves.distinct("reserves.sailor.name", {"reserves.sailor.skills":{ $all:["row","sail","motor"], $size: 3}})
+
+db.reserves.insert({ "marina" : { "name" : "Sea View", "location" : "Petone" }, "reserves" : { "boat" : { "name" : "Flying Dutch", "number" : 313, "color" : "blue", "driven_by" : [ "sail" ] }, "sailor" : { "name" : "Peter1", "sailorId" : 111, "skills" : [ "row", "motor", "sail" ], "address" : "Upper Hutt" }, "date" : "2017-04-16" } })
+db.reserves.remove({"reserves.date":"2017-04-16"})
+
+db.sailor.distinct("sailorId",{name:1, _id:0})
+db.sailor.createIndex( { sailorId: 1} )
+db.sailor.find( {},{sailorId: 1, name:1, _id:0})
+db.sailor.distinct("name", {"skills":{ $all:["row","sail","motor"], $size: 3}})
+db.sailor.getIndexes()
+--
+// Find reservation on 2017-03-16
+var curs = db.res_ref.find({"reserves.date":"2017-03-16"}, { _id: 0, marina:1, "reserves.boat":1, "reserves.sailor":1 })
+while (curs.hasNext()) {
+tmp_res=curs.next();
+tmp_boat=db.boat.findOne({marina:tmp_res.marina, number:tmp_res.reserves.boat},{_id:0, name:1});
+tmp_sailor=db.sailor.findOne({sailorId:tmp_res.reserves.sailor},{_id:0, name:1});
+ret={marina_name:tmp_res.marina, boat_name:tmp_boat.name,sailor_name:tmp_sailor.name}
+print(tojson(ret))
+}
+
+db.time_table.insert(
+{
+"date" : "2017-03-28", 
+"line_name" : "Hutt Valley Line", 
+"service_no" : 2, 
+"time" : 1045, 
+"distance": 34.3, 
+"latitude": -41.2865, 
+"longitude": 174.7762, 
+"stop": "Wellington",
+"driver" : { "driver_name": "fred", "email": "fred@ecs.vuw.ac.nz", "password": "f00f", "mobile": "2799797", "current_position": "Wellington", "skill": [ "Ganz Mavag", "Guliver" ]} ,
+"vehicle": { "vehicle_id": "KW3300", "status": "in_use", "type": "Matangi" },
+"data_point":[
+				{"sequence": ISODate("2016-03-28 21:17:40+0000"), "longitude": -41.2012, "latitude": 175.07, "speed": 70.1},
+				{"sequence": ISODate("2016-03-28 21:07:40+0000"), "longitude": -41.2262, "latitude": 174.77, "speed": 69.2}
+			]
+})

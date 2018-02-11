@@ -1,0 +1,1 @@
+db.reserves.aggregate([{$group: {_id: "$reserves.sailor.sailorId", sailorId: {$first:"$reserves.sailor.sailorId"}, name: {$first:"$reserves.sailor.name"}, address: {$first:"$reserves.sailor.address"}, no_of_reserves: {$sum: 1}}},{$match:{_id: {$exists: true}}},{$sort: {no_of_reserves: -1}},{$limit: 1},{$project: {_id: 0, sailorId: 1, name: 1, address: 1, no_of_reserves:1}}])

@@ -1,0 +1,13 @@
+var sailor_name = "Paul";
+var sailor_skills = db.reserves.distinct('reserves.sailor.skills', { 'reserves.sailor.name': sailor_name });
+var boat_names = db.reserves.aggregate([
+    {$match:{"reserves.boat.driven_by": {$exists: true, $ne: []}}},
+    {$group: {_id: "$reserves.boat.name", driven_by: {$first:"$reserves.boat.driven_by"}}},
+    {$project: {_id: 0, name: "$_id" ,sailor_can_drive: { $setIsSubset: ['$driven_by', sailor_skills] }}},
+    {$match:{"sailor_can_drive": true}},
+    {$group:{_id: null, boat_names: { $addToSet: "$name" }}},
+    {$project: {_id: 0, boat_names: 1 }}
+    ]);
+if (boat_names.hasNext()) {
+    print(tojson(boat_names.next().boat_names));
+}

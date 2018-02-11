@@ -1,0 +1,1 @@
+db.reserves.aggregate([{$match:{"reserves.sailor.sailorId": {$exists: true}}},{$group: {_id: "$reserves.sailor.sailorId", name: {$first:"$reserves.sailor.name"}, skills: {$first:"$reserves.sailor.skills"}, address: {$first:"$reserves.sailor.address"}}}])

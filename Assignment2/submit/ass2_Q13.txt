@@ -1,0 +1,993 @@
+10661 ?        Ss     0:00 /bin/sh /usr/pkg/bin/startkde
+10684 ?        Ss     0:00 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation
+10718 ?        S      0:00 /usr/pkg/lib/kde4/libexec/start_kdeinit +kcminit_startup
+10719 ?        Ss     0:00 kdeinit4: kdeinit4 Running...
+10720 ?        S      0:00 kdeinit4: klauncher [kdeinit] --fd=9
+10722 ?        Sl     0:01 kdeinit4: kded4 [kdeinit]
+10735 ?        S      0:00 kdeinit4: kglobalaccel [kdeinit]
+10740 ?        Sl     0:00 /usr/pkg/bin/kactivitymanagerd
+10744 ?        S      0:00 kwrapper4 ksmserver
+10745 ?        Sl     0:00 kdeinit4: ksmserver [kdeinit]
+10751 ?        Sl     1:01 kwin
+10759 ?        Sl     0:26 kdeinit4: plasma-desktop [kdeinit]
+10768 ?        S      0:00 /usr/pkg/bin/kuiserver
+10771 ?        Sl     0:00 /usr/pkg/bin/akonadi_control
+10773 ?        Sl     0:00 akonadiserver
+10789 ?        Sl     0:00 /usr/pkg/bin/akonadi_agent_launcher akonadi_akonotes_resource akonadi_akonotes_resource_0
+10790 ?        S      0:00 /usr/pkg/bin/akonadi_archivemail_agent --identifier akonadi_archivemail_agent
+10791 ?        SN     0:00 /usr/pkg/bin/akonadi_baloo_indexer --identifier akonadi_baloo_indexer
+10792 ?        S      0:00 /usr/pkg/bin/akonadi_birthdays_resource --identifier akonadi_birthdays_resource
+10793 ?        Sl     0:00 /usr/pkg/bin/akonadi_agent_launcher akonadi_contacts_resource akonadi_contacts_resource_0
+10794 ?        S      0:00 /usr/pkg/bin/akonadi_followupreminder_agent --identifier akonadi_followupreminder_agent
+10795 ?        Sl     0:00 /usr/pkg/bin/akonadi_agent_launcher akonadi_ical_resource akonadi_ical_resource_0
+10796 ?        Sl     0:00 /usr/pkg/bin/akonadi_agent_launcher akonadi_maildir_resource akonadi_maildir_resource_0
+10797 ?        S      0:00 /usr/pkg/bin/akonadi_maildispatcher_agent --identifier akonadi_maildispatcher_agent
+10799 ?        S      0:00 /usr/pkg/bin/akonadi_mailfilter_agent --identifier akonadi_mailfilter_agent
+10800 ?        S      0:00 /usr/pkg/bin/akonadi_migration_agent --identifier akonadi_migration_agent
+10801 ?        S      0:00 /usr/pkg/bin/akonadi_newmailnotifier_agent --identifier akonadi_newmailnotifier_agent
+10802 ?        S      0:00 /usr/pkg/bin/akonadi_notes_agent --identifier akonadi_notes_agent
+10803 ?        S      0:00 /usr/pkg/bin/akonadi_sendlater_agent --identifier akonadi_sendlater_agent
+10841 ?        S<     0:00 [kworker/7:0H]
+10854 ?        Sl     0:01 kdeinit4: krunner [kdeinit]
+10863 ?        Sl     0:00 /usr/pkg/bin/pulseaudio --start --log-target=syslog
+10867 ?        S      0:00 /usr/pkg/bin/korgac --icon korgac
+10870 ?        Sl     0:00 kdeinit4: kmix [kdeinit]
+10872 ?        S      0:00 kdeinit4: klipper [kdeinit]
+10880 ?        Sl     0:00 /usr/pkg/bin/knotify4
+10945 ?        Sl     0:10 kdeinit4: dolphin4 [kdeinit] --icon system-file-manager -caption Dolphin /home/lijins
+10979 ?        Rl     0:50 kdeinit4: konsole [kdeinit] -caption=barretts --icon remote-unix -e /bin/ssh -e none barretts
+11191 ?        Sl     2:53 /usr/pkg/bin/firefox45
+11196 ?        S      0:00 /usr/pkg/libexec/gconfd-2
+11217 ?        S      0:00 /usr/pkg/libexec/gvfsd
+11534 ?        S      0:00 [kworker/4:0]
+11861 pts/2    Ss     0:00 -bin/tcsh
+11944 ?        S<     0:01 [kworker/5:2H]
+12369 pts/2    Sl     0:34 /usr/pkg/java/sun-8/bin/java -Xloggc:/home/lijins/cassandra_training/single_dc/node1/logs/gc.log -ea -XX:+UseThreadPrio
+12601 ?        S<     0:00 [kworker/3:1H]
+12604 ?        S<     0:00 [kworker/1:2H]
+12605 ?        S<     0:00 [kworker/5:0H]
+12871 ?        S<     0:00 [kworker/0:1H]
+13125 ?        S      0:00 [kworker/7:1]
+13967 ?        S      0:00 [kworker/7:0]
+14090 ?        S      0:00 [kworker/6:3]
+14280 ?        S      0:00 [kworker/0:1]
+14426 ?        S      0:00 [kworker/5:0]
+14612 ?        S      0:00 [kworker/1:1]
+14902 ?        Sl     0:05 kdeinit4: dolphin4 [kdeinit] --icon system-file-manager -caption Dolphin
+15124 ?        S      0:00 [kworker/1:0]
+15245 ?        S      0:00 [kworker/3:0]
+15676 ?        S      0:00 [kworker/u16:1]
+15839 ?        S      0:00 [kworker/u16:3]
+15866 ?        Ss     0:00 sshd: royce [priv]
+15869 ?        Ss     0:00 /usr/lib/systemd/systemd --user
+15879 ?        S      0:00 (sd-pam)
+15887 ?        S      0:00 sshd: royce@pts/1
+15897 pts/1    Ss+    0:00 -bash
+16192 ?        S      0:00 [kworker/2:2]
+16293 ?        S      0:00 [kworker/0:0]
+16296 ?        S      0:00 [kworker/6:0]
+16458 ?        S      0:00 [kworker/5:2]
+16492 ?        S      0:00 [kworker/4:1]
+16905 ?        S<     0:00 [kworker/6:0H]
+17439 ?        S<     0:00 [kworker/0:2H]
+17503 pts/3    Ss+    0:00 -bin/tcsh
+17632 ?        S      0:00 [kworker/3:1]
+17662 ?        S      0:00 [kworker/u16:2]
+17909 ?        S      0:00 [kworker/6:1]
+17936 ?        S      0:00 [kworker/1:2]
+17938 ?        S      0:00 [kworker/7:2]
+18168 ?        S      0:00 [kworker/3:2]
+18198 ?        S      0:00 [kworker/5:1]
+18380 ?        S      0:00 [kworker/0:2]
+18384 ?        S      0:00 [kworker/4:2]
+18385 ?        S      0:00 [kworker/u16:0]
+18386 ?        S      0:00 [kworker/6:2]
+18413 ?        S      0:00 [kworker/2:1]
+18452 ?        S      0:00 [kworker/7:3]
+18459 ?        S      0:00 [kworker/2:3]
+18460 ?        S      0:00 [kworker/3:3]
+18461 ?        S      0:00 [kworker/4:3]
+18466 ?        S      0:00 [kworker/1:3]
+18722 pts/2    R+     0:00 ps wax
+20536 ?        S      0:00 [kworker/2:0]
+24087 ?        S<     0:04 [kworker/4:1H]
+24823 tty2     Ssl+   2:07 /usr/lib/xorg-server/Xorg :0 vt2 -auth /var/run/xauth/A:0-lCe8Sb
+24830 ?        S      0:00 -:0
+28516 ?        S<     0:02 [kworker/1:0H]
+30152 ?        S<     0:01 [kworker/6:2H]
+32295 ?        S<     0:00 [kworker/3:0H]
+newkor: [repository] % lsof | grep 7000
+dbus-daem 10684       lijins   30u     unix 0xffff88010bf17000      0t0    1167656 /run/user/55443/bus type=STREAM
+ksmserver 10745       lijins   10u     unix 0xffff8801d3a57000      0t0    1163138 @/tmp/.ICE-unix/10745 type=STREAM
+ksmserver 10745       lijins   29u     unix 0xffff8801dd370000      0t0    1169600 @/tmp/.ICE-unix/10745 type=STREAM
+QProcessM 10745 10750 lijins   10u     unix 0xffff8801d3a57000      0t0    1163138 @/tmp/.ICE-unix/10745 type=STREAM
+QProcessM 10745 10750 lijins   29u     unix 0xffff8801dd370000      0t0    1169600 @/tmp/.ICE-unix/10745 type=STREAM
+akonadi_m 10799       lijins    6u     unix 0xffff88012d807000      0t0    1165801 type=STREAM
+krunner   10854       lijins  mem       REG                8,3   467000    2097885 /usr/pkg/lib/kde4/krunner_windows.so
+QInotifyF 10854 10883 lijins  mem       REG                8,3   467000    2097885 /usr/pkg/lib/kde4/krunner_windows.so
+knotify4  10880       lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+QInotifyF 10880 10885 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+threaded- 10880 14126 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+firefox45 11191       lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+gmain     11191 11193 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+gdbus     11191 11194 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Gecko_IOT 11191 11197 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Link\x20M 11191 11198 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Closing   11191 11199 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Socket    11191 11200 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11201 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11202 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11203 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11204 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11205 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11206 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11207 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11208 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11209 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11210 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11211 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Hel 11191 11212 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+JS\x20Wat 11191 11213 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Hang\x20M 11191 11214 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+BgHangMan 11191 11215 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Cache2    11191 11223 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Timer     11191 11224 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+firefox45 11191 11225 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Cert\x20V 11191 11226 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+GMPThread 11191 11228 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Composito 11191 11232 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImageBrid 11191 11233 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11234 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11235 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11236 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11237 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11238 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11239 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImgDecode 11191 11240 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+ImageIO   11191 11241 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+SoftwareV 11191 11242 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+HTML5\x20 11191 11243 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+IPDL\x20B 11191 11244 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+DOM\x20Wo 11191 11250 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11252 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Proxy\x20 11191 11253 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11255 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+Cache\x20 11191 11256 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+DNS\x20Re 11191 11257 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11258 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+DOM\x20Wo 11191 11259 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+localStor 11191 11260 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+URL\x20Cl 11191 11263 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+DNS\x20Re 11191 11264 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11266 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11267 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+DOM\x20Wo 11191 11298 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11300 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+DOM\x20Wo 11191 11563 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 11707 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+mozStorag 11191 13065 lijins  mem       REG                8,3    70008    1216841 /usr/pkg/lib/libpangocairo-1.0.so.0.4000.3
+newkor: [repository] % netstat -a | grep 7000
+newkor: [repository] % man netstat
+newkor: [repository] % netstat -an | grep 7000
+tcp        0      0 127.0.0.1:7000          0.0.0.0:*               LISTEN     
+tcp        1      0 127.0.0.1:36024         127.0.0.3:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:55336         127.0.0.2:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:36022         127.0.0.3:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:36786         127.0.0.5:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:38162         127.0.0.4:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:38164         127.0.0.4:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:36784         127.0.0.5:7000          CLOSE_WAIT 
+tcp        1      0 127.0.0.1:55338         127.0.0.2:7000          CLOSE_WAIT 
+newkor: [repository] % netstat -anp | grep 7000
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 127.0.0.1:7000          0.0.0.0:*               LISTEN      12369/java          
+tcp        1      0 127.0.0.1:36024         127.0.0.3:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:55336         127.0.0.2:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:36022         127.0.0.3:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:36786         127.0.0.5:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:38162         127.0.0.4:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:38164         127.0.0.4:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:36784         127.0.0.5:7000          CLOSE_WAIT  12369/java          
+tcp        1      0 127.0.0.1:55338         127.0.0.2:7000          CLOSE_WAIT  12369/java          
+newkor: [repository] % ps -p12369
+  PID TTY          TIME CMD
+12369 pts/2    00:00:34 java
+newkor: [repository] % ps -w -p12369
+  PID TTY          TIME CMD
+12369 pts/2    00:00:34 java
+newkor: [repository] % ps -wa -p12369
+  PID TTY          TIME CMD
+12369 pts/2    00:00:34 java
+18844 pts/2    00:00:00 ps
+newkor: [repository] % ps wax | grp java
+grp: Command not found.
+newkor: [repository] % ps wax | grep java
+12369 pts/2    Sl     0:34 /usr/pkg/java/sun-8/bin/java -Xloggc:/home/lijins/cassandra_training/single_dc/node1/logs/gc.log -ea -XX:+UseThreadPriorities -XX:ThreadPriorityPolicy=42 -XX:+HeapDumpOnOutOfMemoryError -Xss256k -XX:StringTableSize=1000003 -XX:+AlwaysPreTouch -XX:-UseBiasedLocking -XX:+UseTLAB -XX:+ResizeTLAB -XX:+UseNUMA -XX:+PerfDisableSharedMem -Djava.net.preferIPv4Stack=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -XX:SurvivorRatio=8 -XX:MaxTenuringThreshold=1 -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSWaitDuration=10000 -XX:+CMSParallelInitialMarkEnabled -XX:+CMSEdenChunksRecordAlways -XX:+CMSClassUnloadingEnabled -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintHeapAtGC -XX:+PrintTenuringDistribution -XX:+PrintGCApplicationStoppedTime -XX:+PrintPromotionFailure -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=10M -Xms500M -Xmx500M -Xmn50M -XX:+UseCondCardMark -XX:CompileCommandFile=/home/lijins/cassandra_training/single_dc/node1/conf/hotspot_compiler -javaagent:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jamm-0.3.0.jar -Dcassandra.jmx.local.port=7100 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.password.file=/etc/cassandra/jmxremote.password -Djava.library.path=/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/sigar-bin -Dcassandra.migration_task_wait_in_seconds=10 -Dlogback.configurationFile=logback.xml -Dcassandra.logdir=/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/logs -Dcassandra.storagedir=/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/data -Dcassandra-pidfile=/home/lijins/cassandra_training/single_dc/node1/cassandra.pid -cp /home/lijins/cassandra_training/single_dc/node1/conf:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/build/classes/main:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/build/classes/thrift:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/airline-0.6.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/antlr-runtime-3.5.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/apache-cassandra-3.10.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/apache-cassandra-thrift-3.10.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/asm-5.0.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/caffeine-2.2.6.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/cassandra-driver-core-3.0.1-shaded.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/commons-cli-1.1.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/commons-codec-1.9.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/commons-lang3-3.1.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/commons-math3-3.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/compress-lzf-0.8.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/concurrentlinkedhashmap-lru-1.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/concurrent-trees-2.4.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/disruptor-3.0.1.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/ecj-4.4.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/guava-18.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/HdrHistogram-2.1.9.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/high-scale-lib-1.0.6.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/hppc-0.5.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jackson-core-asl-1.9.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jackson-mapper-asl-1.9.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jamm-0.3.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/javax.inject.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jbcrypt-0.3m.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jcl-over-slf4j-1.7.7.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jctools-core-1.2.1.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jflex-1.6.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jna-4.0.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/joda-time-2.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/json-simple-1.1.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/libthrift-0.9.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/log4j-over-slf4j-1.7.7.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/logback-classic-1.1.3.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/logback-core-1.1.3.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/lz4-1.3.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/metrics-core-3.1.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/metrics-jvm-3.1.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/metrics-logback-3.1.0.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/netty-all-4.0.39.Final.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/ohc-core-0.4.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/ohc-core-j8-0.4.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/reporter-config3-3.0.3.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/reporter-config-base-3.0.3.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/sigar-1.6.4.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/slf4j-api-1.7.7.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/snakeyaml-1.11.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/snappy-java-1.1.1.7.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/snowball-stemmer-1.3.0.581.1.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/ST4-4.0.8.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/stream-2.5.2.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/thrift-server-0.3.7.jar:/vol/courses/swen432/cassandra/ccm/apache-cassandra-latest/lib/jsr223/*/*.jar -Dcassandra.join_ring=True -Dcassandra.logdir=/home/lijins/cassandra_training/single_dc/node1/logs -Dcassandra.boot_without_jna=true org.apache.cassandra.service.CassandraDaemon
+18874 pts/2    S+     0:00 grep java
+newkor: [repository] % kill -9 12369
+newkor: [repository] % ps wax | grep java
+18877 pts/2    S+     0:00 grep java
+newkor: [repository] % ps wax | grep java
+18908 pts/2    S+     0:00 grep java
+newkor: [repository] % ps wax | grep cassandra
+18922 pts/2    S+     0:00 grep cassandra
+newkor: [repository] % netstat -anp | grep 7000
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+newkor: [repository] % netstat -anp 
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 127.0.0.1:53            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 127.0.0.1:6010          0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:60649           0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:6445            0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:751             0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -                   
+tcp        0      0 130.195.5.137:891       130.195.6.18:2049       ESTABLISHED -                   
+tcp        0      0 130.195.5.137:22        130.195.5.158:50044     ESTABLISHED -                   
+tcp        0      0 130.195.5.137:57412     130.195.6.17:6444       ESTABLISHED -                   
+tcp        0      0 130.195.5.137:49724     130.195.5.7:8080        ESTABLISHED 11191/firefox45     
+tcp        0      0 130.195.5.137:818       130.195.5.13:2049       TIME_WAIT   -                   
+tcp6       0      0 ::1:53                  :::*                    LISTEN      -                   
+tcp6       0      0 :::22                   :::*                    LISTEN      -                   
+tcp6       0      0 ::1:6010                :::*                    LISTEN      -                   
+tcp6       0      0 :::55017                :::*                    LISTEN      -                   
+tcp6       0      0 :::111                  :::*                    LISTEN      -                   
+udp        0      0 127.0.0.1:53            0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -                   
+udp        0      0 130.195.5.255:123       0.0.0.0:*                           -                   
+udp        0      0 130.195.5.137:123       0.0.0.0:*                           -                   
+udp        0      0 127.0.0.1:123           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:123             0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:728             0.0.0.0:*                           -                   
+udp        0      0 127.0.0.1:740           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:752             0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:815             0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:1022            0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:1023            0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:58775           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:48039           0.0.0.0:*                           -                   
+udp        0      0 0.0.0.0:60348           0.0.0.0:*                           -                   
+udp6       0      0 ::1:53                  :::*                                -                   
+udp6       0      0 :::111                  :::*                                -                   
+udp6       0      0 2404:2000:2000:5:fa:123 :::*                                -                   
+udp6       0      0 fe80::10b1:2c00:837:123 :::*                                -                   
+udp6       0      0 ::1:123                 :::*                                -                   
+udp6       0      0 :::123                  :::*                                -                   
+udp6       0      0 :::815                  :::*                                -                   
+udp6       0      0 :::49073                :::*                                -                   
+raw6       0      0 :::58                   :::*                    7           -                   
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node   PID/Program name     Path
+unix  2      [ ACC ]     STREAM     LISTENING     1164807  10720/kdeinit4: kla  /run/user/55443/ksocket-lijins/klauncherT10720.slave-socket
+unix  2      [ ACC ]     STREAM     LISTENING     907473   -                    @/tmp/.X11-unix/X0
+unix  2      [ ACC ]     STREAM     LISTENING     15664    -                    /var/run/xdmctl/dmctl/socket
+unix  2      [ ACC ]     STREAM     LISTENING     13884    -                    /run/dbus/system_bus_socket
+unix  2      [ ACC ]     STREAM     LISTENING     1166696  10745/kdeinit4: ksm  /tmp/.ICE-unix/10745
+unix  2      [ ]         DGRAM                    1165676  10655/systemd        /run/user/55443/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     9839     -                    /run/syslog-ng.ctl
+unix  2      [ ACC ]     STREAM     LISTENING     1165680  10655/systemd        /run/user/55443/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     1165685  10655/systemd        /run/user/55443/bus
+unix  2      [ ]         DGRAM                    1192317  -                    /run/user/1250/systemd/notify
+unix  2      [ ACC ]     STREAM     LISTENING     1192321  -                    /run/user/1250/systemd/private
+unix  2      [ ACC ]     STREAM     LISTENING     1166723  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  2      [ ACC ]     STREAM     LISTENING     1192326  -                    /run/user/1250/bus
+unix  2      [ ACC ]     STREAM     LISTENING     1166982  11196/gconfd-2       /tmp/orbit-lijins/linc-2bbc-0-60b0f5d88b035
+unix  2      [ ACC ]     STREAM     LISTENING     903816   -                    /var/run/xdmctl/dmctl-:0/socket
+unix  2      [ ACC ]     STREAM     LISTENING     1166987  11191/firefox45      /tmp/orbit-lijins/linc-2bb7-0-50793cf8c195
+unix  2      [ ACC ]     STREAM     LISTENING     446      -                    /run/rpcbind.sock
+unix  2      [ ACC ]     STREAM     LISTENING     1166695  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  2      [ ACC ]     STREAM     LISTENING     1166788  10863/pulseaudio     /tmp/.esd-55443/socket
+unix  2      [ ACC ]     STREAM     LISTENING     1166794  10863/pulseaudio     /run/user/55443/pulse/native
+unix  2      [ ACC ]     STREAM     LISTENING     907474   -                    /tmp/.X11-unix/X0
+unix  2      [ ACC ]     STREAM     LISTENING     465      -                    /run/lvm/lvmetad.socket
+unix  16     [ ]         DGRAM                    471      -                    /run/systemd/journal/dev-log
+unix  2      [ ACC ]     SEQPACKET  LISTENING     475      -                    /run/systemd/coredump
+unix  3      [ ]         DGRAM                    12507    -                    /run/systemd/notify
+unix  2      [ ]         DGRAM                    12509    -                    /run/systemd/cgroups-agent
+unix  2      [ ACC ]     STREAM     LISTENING     479      -                    /run/systemd/journal/stdout
+unix  7      [ ]         DGRAM                    481      -                    /run/systemd/journal/socket
+unix  2      [ ACC ]     STREAM     LISTENING     12513    -                    /run/systemd/private
+unix  2      [ ACC ]     SEQPACKET  LISTENING     497      -                    /run/udev/control
+unix  2      [ ACC ]     STREAM     LISTENING     1164798  10719/kdeinit4: kde  /run/user/55443/ksocket-lijins/kdeinit4__0
+unix  3      [ ]         STREAM     CONNECTED     1163072  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1165704  10655/systemd        
+unix  3      [ ]         STREAM     CONNECTED     1171704  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1166984  11196/gconfd-2       
+unix  3      [ ]         STREAM     CONNECTED     1169663  10880/knotify4       
+unix  3      [ ]         STREAM     CONNECTED     897985   -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164232  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1168804  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1167712  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     12527    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1167886  -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1163138  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  2      [ ]         DGRAM                    16537    -                    
+unix  2      [ ]         DGRAM                    1166607  10655/systemd        
+unix  2      [ ]         DGRAM                    13453    -                    
+unix  3      [ ]         STREAM     CONNECTED     1165722  10740/kactivitymana  
+unix  3      [ ]         STREAM     CONNECTED     1171488  10870/kdeinit4: kmi  
+unix  3      [ ]         STREAM     CONNECTED     16547    -                    
+unix  3      [ ]         STREAM     CONNECTED     1169482  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1171474  10863/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     1168673  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         DGRAM                    1165678  10655/systemd        
+unix  3      [ ]         STREAM     CONNECTED     1165719  10722/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1163083  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1164247  10802/akonadi_notes  
+unix  3      [ ]         STREAM     CONNECTED     1169763  10684/dbus-daemon    /run/user/55443/bus
+unix  2      [ ]         DGRAM                    18221    -                    
+unix  2      [ ]         DGRAM                    1168498  -                    
+unix  3      [ ]         STREAM     CONNECTED     1170522  10880/knotify4       
+unix  3      [ ]         STREAM     CONNECTED     1167720  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1170534  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1165731  10751/kwin           
+unix  3      [ ]         STREAM     CONNECTED     18213    -                    
+unix  3      [ ]         STREAM     CONNECTED     1166686  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1168797  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1170536  10870/kdeinit4: kmi  
+unix  3      [ ]         STREAM     CONNECTED     1166748  10790/akonadi_archi  
+unix  3      [ ]         STREAM     CONNECTED     1164252  10854/kdeinit4: kru  
+unix  3      [ ]         STREAM     CONNECTED     10929    -                    
+unix  3      [ ]         STREAM     CONNECTED     1169772  11217/gvfsd          
+unix  3      [ ]         STREAM     CONNECTED     1171484  10867/korgac         
+unix  2      [ ]         DGRAM                    571      -                    
+unix  3      [ ]         STREAM     CONNECTED     1166986  11196/gconfd-2       /tmp/orbit-lijins/linc-2bbc-0-60b0f5d88b035
+unix  3      [ ]         STREAM     CONNECTED     1168670  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1165720  10740/kactivitymana  
+unix  2      [ ]         DGRAM                    16530    -                    
+unix  3      [ ]         STREAM     CONNECTED     701      -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1167580  10719/kdeinit4: kde  /run/user/55443/ksocket-lijins/kdeinit4__0
+unix  3      [ ]         STREAM     CONNECTED     14316    -                    
+unix  3      [ ]         STREAM     CONNECTED     1171701  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     10930    -                    
+unix  3      [ ]         STREAM     CONNECTED     1169654  10870/kdeinit4: kmi  
+unix  3      [ ]         STREAM     CONNECTED     16548    -                    
+unix  3      [ ]         STREAM     CONNECTED     1166924  10979/kdeinit4: kon  
+unix  3      [ ]         STREAM     CONNECTED     1168517  10735/kdeinit4: kgl  
+unix  3      [ ]         STREAM     CONNECTED     1167772  -                    /var/run/xdmctl/dmctl-:0/socket
+unix  3      [ ]         STREAM     CONNECTED     1166824  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1189007  14902/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1165804  10800/akonadi_migra  
+unix  2      [ ]         DGRAM                    1192306  -                    
+unix  3      [ ]         STREAM     CONNECTED     1169773  11217/gvfsd          
+unix  2      [ ]         DGRAM                    1165653  -                    
+unix  3      [ ]         STREAM     CONNECTED     16549    -                    
+unix  3      [ ]         STREAM     CONNECTED     10596    -                    
+unix  3      [ ]         STREAM     CONNECTED     1166740  10795/akonadi_agent  
+unix  3      [ ]         DGRAM                    1192319  -                    
+unix  3      [ ]         STREAM     CONNECTED     1171526  10870/kdeinit4: kmi  
+unix  3      [ ]         STREAM     CONNECTED     1171513  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     16550    -                    
+unix  3      [ ]         STREAM     CONNECTED     1165926  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1167770  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1169660  10867/korgac         
+unix  3      [ ]         STREAM     CONNECTED     16498    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1167727  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     16630    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1184951  10863/pulseaudio     /run/user/55443/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     1170620  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1166749  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164129  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1168672  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1167737  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1169610  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1163100  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1182410  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     20616    -                    
+unix  3      [ ]         STREAM     CONNECTED     1167617  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     13405    -                    
+unix  3      [ ]         STREAM     CONNECTED     1171709  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1165927  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1168533  10744/kwrapper4      
+unix  3      [ ]         STREAM     CONNECTED     16487    -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1167769  10863/pulseaudio     /run/user/55443/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     1170512  10872/kdeinit4: kli  
+unix  3      [ ]         STREAM     CONNECTED     1167006  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1169774  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1166826  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     906149   -                    
+unix  3      [ ]         STREAM     CONNECTED     1167561  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1167756  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1167726  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1168671  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1170615  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1166759  10800/akonadi_migra  
+unix  3      [ ]         STREAM     CONNECTED     16633    -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1185820  10880/knotify4       
+unix  3      [ ]         STREAM     CONNECTED     1171523  10870/kdeinit4: kmi  
+unix  3      [ ]         STREAM     CONNECTED     1166985  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1169655  10880/knotify4       
+unix  3      [ ]         STREAM     CONNECTED     1166671  10722/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1170527  10854/kdeinit4: kru  
+unix  3      [ ]         STREAM     CONNECTED     1169659  10872/kdeinit4: kli  
+unix  3      [ ]         STREAM     CONNECTED     1165728  10745/kdeinit4: ksm  
+unix  3      [ ]         STREAM     CONNECTED     1169580  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1168535  10751/kwin           
+unix  3      [ ]         DGRAM                    1192320  -                    
+unix  3      [ ]         STREAM     CONNECTED     1170538  10854/kdeinit4: kru  
+unix  3      [ ]         STREAM     CONNECTED     1166825  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1165809  10794/akonadi_follo  
+unix  3      [ ]         STREAM     CONNECTED     1166710  10771/akonadi_contr  
+unix  3      [ ]         STREAM     CONNECTED     1168521  10735/kdeinit4: kgl  
+unix  3      [ ]         STREAM     CONNECTED     1171475  10867/korgac         
+unix  3      [ ]         STREAM     CONNECTED     1167887  -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1170437  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1169653  10863/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     1163258  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1171702  11217/gvfsd          
+unix  3      [ ]         STREAM     CONNECTED     1170441  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1169526  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1168511  10722/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1170537  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1169609  10802/akonadi_notes  
+unix  3      [ ]         STREAM     CONNECTED     1169593  10790/akonadi_archi  
+unix  3      [ ]         STREAM     CONNECTED     1166920  10979/kdeinit4: kon  
+unix  3      [ ]         STREAM     CONNECTED     1164158  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1169487  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1171485  10870/kdeinit4: kmi  
+unix  2      [ ]         DGRAM                    10878    -                    
+unix  3      [ ]         DGRAM                    1165679  10655/systemd        
+unix  3      [ ]         STREAM     CONNECTED     1167659  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1169637  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1169648  10867/korgac         
+unix  3      [ ]         STREAM     CONNECTED     1167679  10799/akonadi_mailf  
+unix  3      [ ]         STREAM     CONNECTED     1167788  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1166828  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1164893  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     903821   -                    
+unix  3      [ ]         STREAM     CONNECTED     9799     -                    
+unix  3      [ ]         STREAM     CONNECTED     1164151  10768/kuiserver      
+unix  3      [ ]         STREAM     CONNECTED     1169601  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1163255  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1164871  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164844  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         DGRAM                    12556    -                    
+unix  3      [ ]         STREAM     CONNECTED     1168627  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1169603  10791/akonadi_baloo  
+unix  3      [ ]         STREAM     CONNECTED     1164228  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     15340    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1166831  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1163231  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164212  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1163053  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1164047  -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1168603  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1167656  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     16504    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1166767  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1167583  10745/kdeinit4: ksm  
+unix  3      [ ]         STREAM     CONNECTED     1167646  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1167662  10803/akonadi_sendl  
+unix  3      [ ]         STREAM     CONNECTED     16484    -                    
+unix  3      [ ]         STREAM     CONNECTED     1164897  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1163240  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1165795  10795/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1163230  10800/akonadi_migra  
+unix  3      [ ]         STREAM     CONNECTED     1164801  10720/kdeinit4: kla  
+unix  3      [ ]         DGRAM                    12557    -                    
+unix  3      [ ]         STREAM     CONNECTED     1164229  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1168599  10802/akonadi_notes  
+unix  3      [ ]         STREAM     CONNECTED     1182409  14902/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1175528  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1169671  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1166830  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1167633  10773/akonadiserver  
+unix  2      [ ]         DGRAM                    1186485  -                    
+unix  2      [ ]         DGRAM                    11804    -                    
+unix  3      [ ]         STREAM     CONNECTED     1168621  10801/akonadi_newma  
+unix  2      [ ]         DGRAM                    3065     -                    
+unix  3      [ ]         STREAM     CONNECTED     1166766  10854/kdeinit4: kru  
+unix  3      [ ]         STREAM     CONNECTED     1169528  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     2441     -                    
+unix  3      [ ]         STREAM     CONNECTED     1165799  10795/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1167616  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1164125  10719/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1164789  10684/dbus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     1164231  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1164898  10854/kdeinit4: kru  
+unix  3      [ ]         STREAM     CONNECTED     1183407  14902/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1164157  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1167791  10945/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1169602  10792/akonadi_birth  
+unix  3      [ ]         STREAM     CONNECTED     1169598  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1167658  10684/dbus-daemon    /run/user/55443/bus
+unix  2      [ ]         DGRAM                    10085    -                    
+unix  3      [ ]         STREAM     CONNECTED     1168803  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1166803  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164226  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1164224  10794/akonadi_follo  
+unix  3      [ ]         STREAM     CONNECTED     1165793  10792/akonadi_birth  
+unix  3      [ ]         STREAM     CONNECTED     1169549  -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1169607  10790/akonadi_archi  
+unix  3      [ ]         STREAM     CONNECTED     1163249  10684/dbus-daemon    /run/user/55443/bus
+unix  2      [ ]         DGRAM                    22533    -                    
+unix  3      [ ]         STREAM     CONNECTED     11583    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1169768  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1169599  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1185671  -                    
+unix  3      [ ]         STREAM     CONNECTED     1168595  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1163211  10796/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1169550  -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1164854  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1164223  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1163213  10791/akonadi_baloo  
+unix  3      [ ]         STREAM     CONNECTED     1169537  10759/kdeinit4: pla  
+unix  3      [ ]         STREAM     CONNECTED     1164142  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1168605  10802/akonadi_notes  
+unix  3      [ ]         STREAM     CONNECTED     1167655  10796/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1166815  10863/pulseaudio     /run/user/55443/pulse/native
+unix  3      [ ]         STREAM     CONNECTED     1182407  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1163234  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1164218  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1163259  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1173170  10945/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     11584    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1170715  11196/gconfd-2       
+unix  3      [ ]         STREAM     CONNECTED     1167627  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1165805  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     15370    -                    
+unix  3      [ ]         STREAM     CONNECTED     1166804  10872/kdeinit4: kli  
+unix  3      [ ]         STREAM     CONNECTED     1167649  10792/akonadi_birth  
+unix  3      [ ]         STREAM     CONNECTED     16486    -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1164222  10794/akonadi_follo  
+unix  3      [ ]         STREAM     CONNECTED     1169529  10751/kwin           
+unix  3      [ ]         STREAM     CONNECTED     907477   -                    
+unix  3      [ ]         STREAM     CONNECTED     1167663  10795/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     10092    -                    /run/systemd/journal/stdout
+unix  2      [ ]         DGRAM                    1191078  -                    
+unix  3      [ ]         STREAM     CONNECTED     1174376  10880/knotify4       
+unix  3      [ ]         STREAM     CONNECTED     1163051  10684/dbus-daemon    
+unix  2      [ ]         DGRAM                    9835     -                    
+unix  3      [ ]         STREAM     CONNECTED     1166827  10867/korgac         
+unix  3      [ ]         STREAM     CONNECTED     1167650  10789/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1164869  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1165773  10759/kdeinit4: pla  
+unix  3      [ ]         STREAM     CONNECTED     1169597  10800/akonadi_migra  
+unix  3      [ ]         STREAM     CONNECTED     2579     -                    
+unix  3      [ ]         STREAM     CONNECTED     1173213  10979/kdeinit4: kon  
+unix  3      [ ]         STREAM     CONNECTED     1164230  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  2      [ ]         DGRAM                    1183709  -                    
+unix  3      [ ]         STREAM     CONNECTED     1164217  10793/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1169578  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164150  10768/kuiserver      
+unix  3      [ ]         STREAM     CONNECTED     1167664  10803/akonadi_sendl  
+unix  3      [ ]         STREAM     CONNECTED     14019    -                    
+unix  3      [ ]         STREAM     CONNECTED     16485    -                    
+unix  3      [ ]         STREAM     CONNECTED     1163252  10759/kdeinit4: pla  
+unix  3      [ ]         STREAM     CONNECTED     1165794  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1163228  10789/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1167614  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     20074    -                    
+unix  3      [ ]         STREAM     CONNECTED     1167787  10945/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1163050  10684/dbus-daemon    
+unix  3      [ ]         STREAM     CONNECTED     1166796  10872/kdeinit4: kli  
+unix  3      [ ]         STREAM     CONNECTED     1164892  10801/akonadi_newma  
+unix  3      [ ]         STREAM     CONNECTED     1166989  11191/firefox45      /tmp/orbit-lijins/linc-2bb7-0-50793cf8c195
+unix  3      [ ]         STREAM     CONNECTED     1169566  10773/akonadiserver  
+unix  3      [ ]         STREAM     CONNECTED     21554    -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1168669  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1163254  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1164896  10803/akonadi_sendl  
+unix  3      [ ]         STREAM     CONNECTED     1190244  -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     1163212  10792/akonadi_birth  
+unix  3      [ ]         STREAM     CONNECTED     1165755  10759/kdeinit4: pla  
+unix  3      [ ]         STREAM     CONNECTED     1169474  -                    /run/systemd/journal/stdout
+unix  3      [ ]         DGRAM                    12511    -                    
+unix  3      [ ]         STREAM     CONNECTED     1164233  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1168600  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1167624  10759/kdeinit4: pla  
+unix  3      [ ]         STREAM     CONNECTED     1181549  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1164225  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1169567  10773/akonadiserver  
+unix  3      [ ]         STREAM     CONNECTED     1168625  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1163248  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  2      [ ]         DGRAM                    511      -                    
+unix  3      [ ]         STREAM     CONNECTED     1168740  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1168709  10945/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1167628  10768/kuiserver      
+unix  3      [ ]         STREAM     CONNECTED     1164860  10768/kuiserver      
+unix  3      [ ]         STREAM     CONNECTED     1170556  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1167657  10797/akonadi_maild  
+unix  3      [ ]         STREAM     CONNECTED     1184072  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1166805  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164895  10796/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1164214  10794/akonadi_follo  
+unix  3      [ ]         STREAM     CONNECTED     1169594  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1166802  10863/pulseaudio     
+unix  3      [ ]         STREAM     CONNECTED     903818   -                    
+unix  3      [ ]         STREAM     CONNECTED     1192995  -                    
+unix  3      [ ]         STREAM     CONNECTED     1168597  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1168624  10803/akonadi_sendl  
+unix  3      [ ]         STREAM     CONNECTED     1163247  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1173319  11191/firefox45      
+unix  3      [ ]         STREAM     CONNECTED     1164152  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1185670  -                    
+unix  3      [ ]         STREAM     CONNECTED     1165801  10799/akonadi_mailf  
+unix  3      [ ]         STREAM     CONNECTED     1167651  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1164211  10793/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1164805  10720/kdeinit4: kla  
+unix  3      [ ]         STREAM     CONNECTED     1168606  10802/akonadi_notes  
+unix  3      [ ]         STREAM     CONNECTED     1167661  10790/akonadi_archi  
+unix  3      [ ]         STREAM     CONNECTED     1168640  10854/kdeinit4: kru  
+unix  3      [ ]         STREAM     CONNECTED     903820   -                    
+unix  3      [ ]         STREAM     CONNECTED     1165796  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1164219  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1164215  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     3068     -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1167667  10799/akonadi_mailf  
+unix  3      [ ]         STREAM     CONNECTED     1163256  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     22531    -                    
+unix  3      [ ]         STREAM     CONNECTED     1164890  10793/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1163246  10797/akonadi_maild  
+unix  3      [ ]         STREAM     CONNECTED     1165803  10801/akonadi_newma  
+unix  3      [ ]         STREAM     CONNECTED     1164790  10655/systemd        
+unix  3      [ ]         STREAM     CONNECTED     1168594  10791/akonadi_baloo  
+unix  3      [ ]         STREAM     CONNECTED     1164894  10801/akonadi_newma  
+unix  3      [ ]         STREAM     CONNECTED     1164141  10751/kwin           
+unix  3      [ ]         STREAM     CONNECTED     1191057  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1167669  10797/akonadi_maild  
+unix  3      [ ]         STREAM     CONNECTED     1169600  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1169595  10789/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1184946  10863/pulseaudio     /run/user/55443/pulse/native
+unix  2      [ ]         DGRAM                    9828     -                    
+unix  3      [ ]         STREAM     CONNECTED     1164220  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1168527  -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1163070  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1168604  10799/akonadi_mailf  
+unix  3      [ ]         STREAM     CONNECTED     1165925  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1166814  10722/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1163253  10759/kdeinit4: pla  
+unix  3      [ ]         STREAM     CONNECTED     9834     -                    
+unix  3      [ ]         STREAM     CONNECTED     1163233  10793/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1164832  10751/kwin           
+unix  3      [ ]         STREAM     CONNECTED     1169460  10655/systemd        
+unix  3      [ ]         DGRAM                    12512    -                    
+unix  3      [ ]         STREAM     CONNECTED     1173168  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1167660  10796/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1164891  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     903819   -                    
+unix  3      [ ]         STREAM     CONNECTED     1164227  10745/kdeinit4: ksm  @/tmp/.ICE-unix/10745
+unix  3      [ ]         STREAM     CONNECTED     1164208  10789/akonadi_agent  
+unix  3      [ ]         STREAM     CONNECTED     1165757  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164132  10722/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1164800  10719/kdeinit4: kde  
+unix  3      [ ]         STREAM     CONNECTED     1167732  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1170438  10790/akonadi_archi  
+unix  3      [ ]         STREAM     CONNECTED     1163250  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1183401  14902/kdeinit4: dol  
+unix  3      [ ]         STREAM     CONNECTED     1163229  10797/akonadi_maild  
+unix  3      [ ]         STREAM     CONNECTED     1189570  10720/kdeinit4: kla  
+unix  3      [ ]         STREAM     CONNECTED     1168626  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1169596  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1181547  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     16469    -                    
+unix  3      [ ]         STREAM     CONNECTED     1166829  10867/korgac         
+unix  3      [ ]         STREAM     CONNECTED     1164248  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1165780  10684/dbus-daemon    /run/user/55443/bus
+unix  3      [ ]         STREAM     CONNECTED     1169582  10791/akonadi_baloo  
+unix  3      [ ]         STREAM     CONNECTED     1164873  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1164209  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     1169479  -                    @/tmp/.X11-unix/X0
+unix  3      [ ]         STREAM     CONNECTED     897980   -                    /run/dbus/system_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     1169604  10773/akonadiserver  /tmp/akonadi-lijins.ArVKWI/akonadiserver.socket
+unix  3      [ ]         STREAM     CONNECTED     1168602  10799/akonadi_mailf  
+unix  3      [ ]         STREAM     CONNECTED     15342    -                    /run/systemd/journal/stdout
+unix  3      [ ]         STREAM     CONNECTED     15337    -                    
+newkor: [repository] % 
+newkor: [repository] % /vol/x3/courses/swen432/cassandra/ccm/ccm_remove
+Removing the training cluster
+newkor: [repository] % /vol/x3/courses/swen432/cassandra/ccm/ccm_create
+Starting the training cluster with ccm https://github.com/pcmanus/ccm
+To explore the features run the ccm in this dir
+e.g. Typing ccm  Displays all the command options
+
+To stop the cluster run ccm_stop
+To remove the cluster run ccm_remove
+
+Creating cluster in /home/lijins/cassandra_training
+Current cluster is now: training
+Waiting for the cluster to start...
+Cluster...
+
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address    Load       Tokens       Owns (effective)  Host ID                               Rack
+UN  127.0.0.1  98.96 KiB  1            66.7%             1b736fa3-ec2e-483c-8f51-940320466042  rack1
+UN  127.0.0.2  98.97 KiB  1            66.7%             a55659d6-d37e-4ee2-8426-751a7e244c11  rack1
+UN  127.0.0.3  98.97 KiB  1            66.7%             02207c0f-e667-42c6-a367-f3d2ab08042c  rack1
+
+
+newkor: [repository] % /vol/x3/courses/swen432/cassandra/ccm/ccm_remove
+Removing the training cluster
+newkor: [repository] % ccm status
+No currently active cluster (use ccm cluster switch)
+newkor: [repository] % ls -l
+total 0
+newkor: [repository] % ls -l ..
+total 8
+drwx------ 2 lijins students 512 Apr  3 10:39 repository
+drwx------ 7 lijins students 512 Apr 10 11:04 single_dc
+newkor: [repository] % rm -R ../single_dc         
+newkor: [repository] % ls -l ..
+total 4
+drwx------ 2 lijins students 512 Apr  3 10:39 repository
+newkor: [repository] % cd ..
+newkor: [~/cassandra_training] % ls
+repository
+newkor: [~/cassandra_training] % netstat -an | grep 7000
+newkor: [~/cassandra_training] % ccm create -n 5 single_dc
+Current cluster is now: single_dc
+newkor: [~/cassandra_training] % ccm start
+newkor: [~/cassandra_training] % ccm status
+Cluster: 'single_dc'
+--------------------
+node1: UP
+node3: UP
+node2: UP
+node5: UP
+node4: UP
+newkor: [~/cassandra_training] % ccm stop
+newkor: [~/cassandra_training] % ccm status
+Cluster: 'single_dc'
+--------------------
+node1: DOWN
+node3: DOWN
+node2: DOWN
+node5: DOWN
+node4: DOWN
+newkor: [~/cassandra_training] % ccm start
+newkor: [~/cassandra_training] % ccm node1 status
+
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address    Load       Tokens       Owns (effective)  Host ID                               Rack
+UN  127.0.0.1  97.96 KiB  1            40.0%             9ff36580-f709-4b06-9da3-43bf1a497525  rack1
+UN  127.0.0.2  136.71 KiB  1            40.0%             c05dd241-dbe2-4fc1-84c7-8aa72c9f038a  rack1
+UN  127.0.0.3  130.68 KiB  1            40.0%             d77d7509-171f-4544-a3c4-265b0518c558  rack1
+UN  127.0.0.4  135.61 KiB  1            40.0%             af470358-fbf6-44ae-955e-25a5ec5cb0fc  rack1
+UN  127.0.0.5  97.91 KiB  1            40.0%             bdbd5ae7-66a9-4d55-91aa-1b9bbbd483ba  rack1
+
+
+newkor: [~/cassandra_training] % ccm node1 ring
+
+
+Datacenter: datacenter1
+==========
+Address    Rack        Status State   Load            Owns                Token                                       
+                                                                          5534023222112865484                         
+127.0.0.1  rack1       Up     Normal  97.96 KiB       40.00%              -9223372036854775808                        
+127.0.0.2  rack1       Up     Normal  136.71 KiB      40.00%              -5534023222112865485                        
+127.0.0.3  rack1       Up     Normal  130.68 KiB      40.00%              -1844674407370955162                        
+127.0.0.4  rack1       Up     Normal  135.61 KiB      40.00%              1844674407370955161                         
+127.0.0.5  rack1       Up     Normal  97.91 KiB       40.00%              5534023222112865484                         
+
+
+  
+newkor: [~/cassandra_training] % CREATE KEYSPACE IF NOT EXISTS ass2 WITH REPLICATION={'class':'SimpleStrategy', 'replication_factor':3};
+Missing }.
+newkor: [~/cassandra_training] % use ass2
+use: Command not found.
+newkor: [~/cassandra_training] % ccm node1 cqlsh
+Connected to single_dc at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> CREATE KEYSPACE IF NOT EXISTS ass2 WITH REPLICATION={'class':'SimpleStrategy', 'replication_factor':3};
+cqlsh> SOURCE '~/private/a2/table_declarations.cql'
+cqlsh> DESC tables
+
+Keyspace system_schema
+----------------------
+tables     triggers    views    keyspaces  dropped_columns
+functions  aggregates  indexes  types      columns        
+
+Keyspace system_auth
+--------------------
+resource_role_permissons_index  role_permissions  role_members  roles
+
+Keyspace system
+---------------
+available_ranges          peers               batchlog        transferred_ranges
+batches                   compaction_history  size_estimates  hints             
+prepared_statements       sstable_activity    built_views   
+"IndexInfo"               peer_events         range_xfers   
+views_builds_in_progress  paxos               local         
+
+Keyspace system_distributed
+---------------------------
+repair_history  view_build_status  parent_repair_history
+
+Keyspace system_traces
+----------------------
+events  sessions
+
+Keyspace ass2
+-------------
+time_table  data_point  driver  vehicle
+
+cqlsh> use ass2;
+cqlsh:ass2> DESC tables
+
+time_table  data_point  driver  vehicle
+
+cqlsh:ass2> COPY driver(driver_name,current_position,email,mobile,password,skill) FROM  '~/private/a2/driver_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.driver with columns [driver_name, current_position, email, mobile, password, skill].
+Processed: 6 rows; Rate:       9 rows/s; Avg. rate:      14 rows/s
+6 rows imported from 1 files in 0.438 seconds (0 skipped).
+cqlsh:ass2> COPY vehicle(vehicle_id,status,type) FROM  '~/private/a2/vehicle_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.vehicle with columns [vehicle_id, status, type].
+Processed: 6 rows; Rate:      12 rows/s; Avg. rate:      17 rows/s
+6 rows imported from 1 files in 0.361 seconds (0 skipped).
+cqlsh:ass2> COPY time_table(line_name,service_no,time,distance,latitude,longitude,stop) FROM  '~/private/a2/time_table_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.time_table with columns [line_name, service_no, time, distance, latitude, longitude, stop].
+Processed: 30 rows; Rate:      53 rows/s; Avg. rate:      77 rows/s
+30 rows imported from 1 files in 0.388 seconds (0 skipped).
+cqlsh:ass2> COPY data_point(line_name,service_no,date,sequence,latitude,longitude,speed) FROM  '~/private/a2/data_point_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.data_point with columns [line_name, service_no, date, sequence, latitude, longitude, speed].
+Processed: 5 rows; Rate:       7 rows/s; Avg. rate:      11 rows/s
+5 rows imported from 1 files in 0.454 seconds (0 skipped).
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from vehicle where vehicle_id='FA1122';
+
+ vehicle_id | status     | type
+------------+------------+------------
+     FA1122 | Upper Hutt | Ganz Mavag
+
+(1 rows)
+cqlsh:ass2> select * from data_point where line_name='Hutt Valey Line' and service_no=2 and date=20160322;
+
+ line_name       | service_no | date     | sequence                        | latitude | longitude | speed
+-----------------+------------+----------+---------------------------------+----------+-----------+-------
+ Hutt Valey Line |          2 | 20160322 | 2016-03-21 21:37:50.000000+0000 | -41.2272 |    174.77 |  29.1
+
+(1 rows)
+cqlsh:ass2> select * from time_table where line_name='Hutt Valley Line' and service_no=2 and time=1045;
+
+ line_name        | service_no | time | distance | latitude | longitude | stop
+------------------+------------+------+----------+----------+-----------+------------
+ Hutt Valley Line |          2 | 1045 |     34.3 | -41.2865 |  174.7762 | Wellington
+
+(1 rows)
+cqlsh:ass2> exit;
+newkor: [~/cassandra_training] % consistency
+consistency: Command not found.
+newkor: [~/cassandra_training] % ccm node1 cqlsh
+Connected to single_dc at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> exit;
+newkor: [~/cassandra_training] % ccm node4 cqlsh 
+Connected to single_dc at 127.0.0.4:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> consistency
+Current consistency level is ONE.
+cqlsh> consistency ALL;
+Consistency level set to ALL.
+cqlsh> select * from driver where driver_name='pavle';
+InvalidRequest: Error from server: code=2200 [Invalid query] message="No keyspace has been specified. USE a keyspace, or explicitly specify keyspace.tablename"
+cqlsh> use ass2;
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from driver where driver_name='pavle';
+NoHostAvailable: 
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from driver where driver_name='pavle';
+NoHostAvailable: 
+cqlsh:ass2> consistency
+Current consistency level is ALL.
+cqlsh:ass2> consistency QUORUM;
+Consistency level set to QUORUM.
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from driver where driver_name='pavle';
+NoHostAvailable: 
+cqlsh:ass2> consistency ONE;                               
+Consistency level set to ONE.
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from driver where driver_name='pavle';
+NoHostAvailable: 
+cqlsh:ass2> select * from driver;
+
+ driver_name | current_position | email                | mobile   | password | skill
+-------------+------------------+----------------------+----------+----------+--------------------------------------
+        fred |            Taita |   fred@ecs.vuw.ac.nz |  2799797 |     f00f |            {'Ganz Mavag', 'Guliver'}
+        jane |         Waikanae |   jane@ecs.vuw.ac.nz |  2131131 |     jj77 |                          {'Matangi'}
+         ann |    not available |    ann@ecs.vuw.ac.nz | 21998877 |     aaaa |                          {'Matangi'}
+       milan |       Upper Hutt |  milan@ecs.vuw.ac.nz |   211111 |     mm77 |                          {'Matangi'}
+       pondy |       Wellington |  pondy@ecs.vuw.ac.nz |   214455 |     pd66 |               {'Guliver', 'Matangi'}
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz |   213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(6 rows)
+cqlsh:ass2> select * from driver where driver_name='james';
+
+ driver_name | current_position | email | mobile | password | skill
+-------------+------------------+-------+--------+----------+-------
+
+(0 rows)
+cqlsh:ass2> exit
+newkor: [~/cassandra_training] % cd ..
+newkor: [~] % ccm list
+  single_dc
+ *multi_dc
+newkor: [~] % ccm node1 cqlsh
+Connected to multi_dc at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> use ass2;
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Keyspace 'ass2' does not exist"
+cqlsh> CREATE KEYSPACE IF NOT EXISTS ass2 WITH REPLICATION={'class':'NetworkTopologyStrategy', 'dc1':3, 'dc2':3};
+cqlsh> use ass2;
+cqlsh:ass2> SOURCE '~/private/a2/table_declarations.cql'
+cqlsh:ass2> COPY driver(driver_name,current_position,email,mobile,password,skill) FROM  '~/private/a2/driver_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.driver with columns [driver_name, current_position, email, mobile, password, skill].
+Processed: 6 rows; Rate:      10 rows/s; Avg. rate:      14 rows/s
+6 rows imported from 1 files in 0.414 seconds (0 skipped).
+cqlsh:ass2> COPY time_table(line_name,service_no,time,distance,latitude,longitude,stop) FROM  '~/private/a2/time_table_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.time_table with columns [line_name, service_no, time, distance, latitude, longitude, stop].
+Processed: 30 rows; Rate:      51 rows/s; Avg. rate:      76 rows/s
+30 rows imported from 1 files in 0.396 seconds (0 skipped).
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from time_table where line_name='Hutt Valley Line' and service_no=2 and time=1045;
+
+ line_name        | service_no | time | distance | latitude | longitude | stop
+------------------+------------+------+----------+----------+-----------+------------
+ Hutt Valley Line |          2 | 1045 |     34.3 | -41.2865 |  174.7762 | Wellington
+
+(1 rows)
+cqlsh:ass2> 

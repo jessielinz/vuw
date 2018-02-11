@@ -1,0 +1,30 @@
+Token                                       
+                                                                          6148914691236517202                         
+127.0.0.1  rack1       Up     Normal  241.69 KiB      50.00%              -9223372036854775808                        
+127.0.0.2  rack1       Up     Normal  281.33 KiB      50.00%              -6148914691236517206                        
+127.0.0.3  rack1       Up     Normal  294.46 KiB      50.00%              -3074457345618258604                        
+127.0.0.4  rack1       Up     Normal  276.67 KiB      50.00%              -2                                          
+127.0.0.5  rack1       Up     Normal  251.74 KiB      50.00%              3074457345618258600                         
+127.0.0.6  rack1       Up     Normal  279.37 KiB      50.00%              6148914691236517202                         
+
+
+  
+barretts: [~] % clear
+barretts: [~] % ccm node1 cqlsh
+Connected to tranz_metro_cluster at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> CREATE KEYSPACE IF NOT EXISTS ass2 WITH REPLICATION={'class':'SimpleStrategy', 'replication_factor':3}; 
+cqlsh> DESC ass2;
+
+CREATE KEYSPACE ass2 WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '3'}  AND durable_writes = true;
+
+cqlsh> 
+
+
+
+
+
+
+
+

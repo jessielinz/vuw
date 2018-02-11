@@ -1,0 +1,120 @@
+ *multi_dc
+newkor: [~] % ccm node1 cqlsh
+Connected to multi_dc at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> use ass2;
+InvalidRequest: Error from server: code=2200 [Invalid query] message="Keyspace 'ass2' does not exist"
+cqlsh> CREATE KEYSPACE IF NOT EXISTS ass2 WITH REPLICATION={'class':'NetworkTopologyStrategy', 'dc1':3, 'dc2':3};
+cqlsh> use ass2;
+cqlsh:ass2> SOURCE '~/private/a2/table_declarations.cql'
+cqlsh:ass2> COPY driver(driver_name,current_position,email,mobile,password,skill) FROM  '~/private/a2/driver_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.driver with columns [driver_name, current_position, email, mobile, password, skill].
+Processed: 6 rows; Rate:      10 rows/s; Avg. rate:      14 rows/s
+6 rows imported from 1 files in 0.414 seconds (0 skipped).
+cqlsh:ass2> COPY time_table(line_name,service_no,time,distance,latitude,longitude,stop) FROM  '~/private/a2/time_table_data.txt' ;
+Using 7 child processes
+
+Starting copy of ass2.time_table with columns [line_name, service_no, time, distance, latitude, longitude, stop].
+Processed: 30 rows; Rate:      51 rows/s; Avg. rate:      76 rows/s
+30 rows imported from 1 files in 0.396 seconds (0 skipped).
+cqlsh:ass2> select * from driver where driver_name='pavle';
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+cqlsh:ass2> select * from time_table where line_name='Hutt Valley Line' and service_no=2 and time=1045;
+
+ line_name        | service_no | time | distance | latitude | longitude | stop
+------------------+------------+------+----------+----------+-----------+------------
+ Hutt Valley Line |          2 | 1045 |     34.3 | -41.2865 |  174.7762 | Wellington
+
+(1 rows)
+cqlsh:ass2> clear
+cqlsh:ass2> CONSISTENCY 
+Current consistency level is ONE.
+cqlsh:ass2> CONSISTENCY QUORUM 
+Consistency level set to QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+
+ driver_name | password
+-------------+----------
+       pavle |     pm33
+
+(1 rows)
+cqlsh:ass2> CONSISTENCY EACH_QUORUM; 
+Consistency level set to EACH_QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+
+ driver_name | password
+-------------+----------
+       pavle |     pm33
+
+(1 rows)
+cqlsh:ass2> CONSISTENCY LOCAL_QUORUM;                                               
+Consistency level set to LOCAL_QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+
+ driver_name | password
+-------------+----------
+       pavle |     pm33
+
+(1 rows)
+cqlsh:ass2> exit;
+newkor: [~] % ccm node6 cqlsh
+Connected to multi_dc at 127.0.0.6:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> CONSISTENCY LOCAL_QUORUM;                                         
+Consistency level set to LOCAL_QUORUM.
+cqlsh> select driver_name,password from driver where driver_name='pavle';
+InvalidRequest: Error from server: code=2200 [Invalid query] message="No keyspace has been specified. USE a keyspace, or explicitly specify keyspace.tablename"
+cqlsh> use ass2;
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+
+ driver_name | password
+-------------+----------
+       pavle |     pm33
+
+(1 rows)
+cqlsh:ass2> CONSISTENCY QUORUM; 
+Consistency level set to QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+
+ driver_name | password
+-------------+----------
+       pavle |     pm33
+
+(1 rows)
+cqlsh:ass2> CONSISTENCY EACH_QUORUM; 
+Consistency level set to EACH_QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+NoHostAvailable: 
+cqlsh:ass2> CONSISTENCY LOCAL_QUORUM; 
+Consistency level set to LOCAL_QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+NoHostAvailable: 
+cqlsh:ass2> exit;
+newkor: [~] % ccm node1 cqlsh
+Connected to multi_dc at 127.0.0.1:9042.
+[cqlsh 5.0.1 | Cassandra 3.10 | CQL spec 3.4.4 | Native protocol v4]
+Use HELP for help.
+cqlsh> CONSISTENCY 
+Current consistency level is ONE.
+cqlsh> CONSISTENCY LOCAL_QUORUM; 
+Consistency level set to LOCAL_QUORUM.
+cqlsh> use ass2;
+cqlsh:ass2> CONSISTENCY LOCAL_QUORUM; 
+Consistency level set to LOCAL_QUORUM.
+cqlsh:ass2> select driver_name,password from driver where driver_name='pavle';
+
+ driver_name | password
+-------------+----------
+       pavle |     pm33
+
+(1 rows)
+cqlsh:ass2> 

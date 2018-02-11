@@ -1,0 +1,21 @@
+newkor: [~] % ccm node1 ring
+
+
+Datacenter: dc1
+==========
+Address    Rack        Status State   Load            Owns                Token
+                                                                          5534023222112865484
+127.0.0.1  r1          Up     Normal  82.68 KiB       25.00%              -9223372036854775808
+127.0.0.2  r1          Up     Normal  65.22 KiB       20.00%              -5534023222112865485
+127.0.0.3  r1          Up     Normal  84.3 KiB        20.00%              -1844674407370955162
+127.0.0.4  r1          Up     Normal  96.62 KiB       20.00%              1844674407370955161
+127.0.0.5  r1          Up     Normal  82.68 KiB       20.00%              5534023222112865484
+
+Datacenter: dc2
+==========
+Address    Rack        Status State   Load            Owns                Token
+                                                                          4611686018427388004
+127.0.0.6  r1          Up     Normal  82.68 KiB       20.00%              -9223372036854775708
+127.0.0.7  r1          Up     Normal  65.22 KiB       25.00%              -4611686018427387804
+127.0.0.8  r1          Up     Normal  77.63 KiB       25.00%              100
+127.0.0.9  r1          Up     Normal  100.56 KiB      25.00%              4611686018427388004

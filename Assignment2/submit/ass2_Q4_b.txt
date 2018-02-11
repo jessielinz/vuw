@@ -1,0 +1,33 @@
+cqlsh:ass2> DESC tables
+
+time_table  data_point  driver  vehicle
+
+
+ driver_name | current_position | email                | mobile | password | skill
+-------------+------------------+----------------------+--------+----------+--------------------------------------
+       pavle |       Upper Hutt | pmogin@ecs.vuw.ac.nz | 213344 |     pm33 | {'Ganz Mavag', 'Guliver', 'Matangi'}
+
+(1 rows)
+
+ vehicle_id | status     | type
+------------+------------+------------
+     FA1122 | Upper Hutt | Ganz Mavag
+
+(1 rows)
+
+ line_name       | service_no | date     | sequence                        | latitude | longitude | speed
+-----------------+------------+----------+---------------------------------+----------+-----------+-------
+ Hutt Valey Line |          2 | 20160322 | 2016-03-21 21:37:50.000000+0000 | -41.2272 |    174.77 |  29.1
+
+(1 rows)
+
+ line_name | service_no | time | distance | latitude | longitude | stop
+-----------+------------+------+----------+----------+-----------+------
+
+(0 rows)
+
+ line_name        | service_no | time | distance | latitude | longitude | stop
+------------------+------------+------+----------+----------+-----------+------------
+ Hutt Valley Line |          2 | 1045 |     34.3 | -41.2865 |  174.7762 | Wellington
+
+(1 rows)

@@ -1,0 +1,6 @@
+
+ line_name        | service_no | time | distance | latitude | longitude | stop
+------------------+------------+------+----------+----------+-----------+------------
+ Hutt Valley Line |          2 | 1045 |     34.3 | -41.2865 |  174.7762 | Wellington
+
+(1 rows)

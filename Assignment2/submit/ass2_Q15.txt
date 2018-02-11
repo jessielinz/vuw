@@ -1,0 +1,110 @@
+cqlsh:ass2> SELECT token(line_name,service_no), line_name,service_no FROM time_table;
+
+ system.token(line_name, service_no) | line_name        | service_no
+-------------------------------------+------------------+------------
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+
+(30 rows)
+cqlsh:ass2> clear
+cqlsh:ass2> SELECT token(line_name,service_no), line_name,service_no FROM time_table;
+
+ system.token(line_name, service_no) | line_name        | service_no
+-------------------------------------+------------------+------------
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+
+(30 rows)
+cqlsh:ass2> SELECT token(line_name,service_no), line_name,service_no FROM time_table;
+
+ system.token(line_name, service_no) | line_name        | service_no
+-------------------------------------+------------------+------------
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -7474942320664480980 |          Melling |          3
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -6012480106752428297 | Hutt Valley Line |          1
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -5905794062536720418 |         Waikanae |          5
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                -2183064056535108044 | Hutt Valley Line |         11
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+                 2322329569350831795 | Hutt Valley Line |          2
+
+(30 rows)
+cqlsh:ass2> 

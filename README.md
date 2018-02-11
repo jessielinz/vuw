@@ -1,5 +1,5 @@
 # vuw
 5 advanced database assignments.
-MangoDB
-Cassandra
+MangoDB,
+Cassandra,
 etc.
